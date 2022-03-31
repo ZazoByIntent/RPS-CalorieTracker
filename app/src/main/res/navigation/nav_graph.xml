@@ -9,6 +9,31 @@
         android:id="@+id/fragment_main"
         android:name="com.example.rps_calorietracker.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main"/>
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_fragment_main_to_inputActivityFragment"
+            app:destination="@id/inputActivityFragment" />
+        <action
+            android:id="@+id/action_fragment_main_to_inputMealFragment"
+            app:destination="@id/inputMealFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inputMealFragment"
+        android:name="com.example.rps_calorietracker.InputMealFragment"
+        android:label="fragment_input_meal"
+        tools:layout="@layout/fragment_input_meal" >
+        <action
+            android:id="@+id/action_inputMealFragment_to_fragment_main"
+            app:destination="@id/fragment_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/inputActivityFragment"
+        android:name="com.example.rps_calorietracker.InputActivityFragment"
+        android:label="fragment_input_activity"
+        tools:layout="@layout/fragment_input_activity" >
+        <action
+            android:id="@+id/action_inputActivityFragment_to_fragment_main"
+            app:destination="@id/fragment_main" />
+    </fragment>
 
 </navigation>
