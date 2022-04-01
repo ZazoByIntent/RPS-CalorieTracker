@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "RPS-CalorieTracker"
 include ':app'
+include ':mylib'
