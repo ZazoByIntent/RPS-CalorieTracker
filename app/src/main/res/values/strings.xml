@@ -3,9 +3,14 @@
     <string name="add_meal">Add meal</string>
     <string name="add_activity">Add activity</string>
 
+    <!-- BEGINNING: fragment_input_activity -->
+    <string name="fragment_input_activity_title">Activity tracker</string>
+    <string name="fragment_input_activity_addActivity">Activity name:</string>
+    <string name="fragment_input_activity_addCalories">Amount of calories:</string>
+    <string name="fragment_input_activity_addActivityBtn">Add</string>
+    <string name="fragment_input_activity_description">Add new activity and add burned calories, doing that activity.</string>
+    <!-- END: fragment_input_activity -->
 
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
