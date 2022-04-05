@@ -11,6 +11,15 @@
     <string name="fragment_input_activity_description">Add new activity and add burned calories, doing that activity.</string>
     <!-- END: fragment_input_activity -->
 
+    <!-- BEGINNING: fragment_meal_meal -->
+    <string name="fragment_input_meal_title">Meal tracker</string>
+    <string name="fragment_input_meal_addFood">Food name:</string>
+    <string name="fragment_input_meal_addCalories">Amount of calories:</string>
+    <string name="fragment_input_meal_addWeight">Food weight:</string>
+    <string name="fragment_input_meal_addMealBtn">Add</string>
+    <string name="fragment_input_meal_description">Add new food, amount of calories and food weight.</string>
+    <!-- END: fragment_meal_meal -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

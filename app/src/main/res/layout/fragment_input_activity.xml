@@ -61,7 +61,6 @@
         android:layout_height="wrap_content"
         android:text="@string/fragment_input_activity_description"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
-        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_mid_vertical_15percent" />
 
@@ -81,7 +80,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
         app:layout_constraintTop_toBottomOf="@+id/enter_activity_text" />
 
@@ -92,28 +90,26 @@
         android:text="@string/fragment_input_activity_addCalories"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
-        app:layout_constraintHorizontal_bias="0.681"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
         app:layout_constraintTop_toBottomOf="@+id/addActivity" />
 
     <EditText
-        android:id="@+id/addCalories"
+        android:id="@+id/addActivityCalories"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
         app:layout_constraintTop_toBottomOf="@+id/enter_calories" />
 
     <Button
-        android:id="@+id/btn_to_full_list"
+        android:id="@+id/addActivityBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/fragment_input_activity_addActivityBtn"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toBottomOf="@+id/addCalories" />
+        app:layout_constraintTop_toBottomOf="@+id/addActivityCalories" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
