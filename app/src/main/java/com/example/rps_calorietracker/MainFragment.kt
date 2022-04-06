@@ -25,9 +25,15 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
+    private fun CreateNewAdapter(){
+        val mealAdapter = MealAdapter(app.dataFoods)
+        binding.rvMain.adapter = mealAdapter
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.rvMain.layoutManager = LinearLayoutManager(activity)
         super.onViewCreated(view, savedInstanceState)
+        CreateNewAdapter()
 
         binding.btnAddMeal.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_main_to_inputMealFragment)
