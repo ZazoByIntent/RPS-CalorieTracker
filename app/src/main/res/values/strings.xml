@@ -19,6 +19,12 @@
     <string name="fragment_input_meal_addMealBtn">Add</string>
     <string name="fragment_input_meal_description">Add new food, amount of calories and food weight.</string>
     <!-- END: fragment_meal_meal -->
+    <string name="card_view_name">Name</string>
+    <string name="card_view_cal">Calories</string>
+    <string name="card_view_amount">Amount</string>
+    <!-- BEGINNING: card_view -->
+
+    <!-- END: card_view -->
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
