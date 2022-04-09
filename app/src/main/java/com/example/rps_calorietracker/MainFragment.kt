@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rps_calorietracker.databinding.FragmentMainBinding
 
@@ -27,7 +28,10 @@ class MainFragment : Fragment() {
 
     private fun CreateNewAdapter(){
         val mealAdapter = MealAdapter(app.dataFoods)
-        binding.rvMain.adapter = mealAdapter
+        val activityAdapter = ActivityAdapter(app.dataActivity)
+        val concatAdapter = ConcatAdapter(mealAdapter, activityAdapter)
+        binding.rvMain.adapter = concatAdapter
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
