@@ -47,6 +47,7 @@ class InputMealFragment : Fragment() {
                     binding.addFoodName.setText("")
                     binding.addFoodCalories.setText("")
                     binding.addWeight.setText("")
+                    //println("Novo dodan element ${app.dataFoods}")
 
                 } catch (e: Exception) {
                     Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
