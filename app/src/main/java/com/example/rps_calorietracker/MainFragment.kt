@@ -45,6 +45,9 @@ class MainFragment : Fragment() {
         binding.btnAddActivity.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_main_to_inputActivityFragment)
         }
+        binding.btnAbout.setOnClickListener {
+            findNavController().navigate(R.id.action_fragment_main_to_aboutFragment)
+        }
     }
 
     override fun onDestroyView() {

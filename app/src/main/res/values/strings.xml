@@ -2,6 +2,7 @@
     <string name="app_name">RPS-CalorieTracker</string>
     <string name="add_meal">Add meal</string>
     <string name="add_activity">Add activity</string>
+    <string name="about">About</string>
 
     <!-- BEGINNING: fragment_input_activity -->
     <string name="fragment_input_activity_title">Activity tracker</string>
@@ -22,10 +23,21 @@
     <string name="card_view_name">Name</string>
     <string name="card_view_cal">Calories</string>
     <string name="card_view_amount">Amount</string>
+
     <!-- BEGINNING: card_view -->
 
     <!-- END: card_view -->
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- BEGINNING: fragment_about -->
+    <string name="fragment_about_title">About</string>
+    <string name="fragment_about_add_name">Name:</string>
+    <string name="fragment_about_name">Calorie tracker</string>
+    <string name="fragment_about_add_description">Description:</string>
+    <string name="fragment_about_description">Calorie tracker is your personal diary to help you reach your goals in weight gain or weight loss.\nTrack your daily food intake and your daily workout, so you know how much of each you still need, to reach your set goals.\nMake reminders and become the very best version of yourself you have always wanted to be.</string>
+    <string name="fragment_about_add_version">Version:</string>
+    <string name="fragment_about_version">Pre-alpha</string>
+    <string name="fragment_about_add_contributors">Developed by:</string>
+    <string name="fragment_about_contributors">Aljaž Hafner\nJernej Belcl\nTim Lašič\nGašper Zlodej</string>
+    <!-- END: fragment_about -->
 
 </resources>
