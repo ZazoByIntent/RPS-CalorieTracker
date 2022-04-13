@@ -17,10 +17,22 @@ class InputMealFragment : Fragment() {
 
     private var _binding: FragmentInputMealBinding? = null
     lateinit var app: MyApplication
+    private lateinit var mealName: String
+    private lateinit var mealCalories : String
+    private lateinit var mealAmount : String
+    private lateinit var UUID : String
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (arguments != null) {
+            mealName = requireArguments().getString("mealName")!!
+            mealCalories = requireArguments().getString("mealCalories")!!
+            mealAmount = requireArguments().getString("mealAmount")!!
+            UUID = requireArguments().getString("UUID")!!
+        } else{
+            mealName = "null"
+        }
     }
 
     override fun onCreateView(
@@ -34,30 +46,53 @@ class InputMealFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.addMealBtn.setOnClickListener {
-            if (isDataValid()) {
-                try {
-                    app.dataFoods.addFood(
-                        Food(
-                            binding.addFoodName.text.toString(),
-                            binding.addFoodCalories.text.toString().toInt(),
-                            binding.addWeight.text.toString().toInt()
-                        )
-                    )
-                    binding.addFoodName.setText("")
-                    binding.addFoodCalories.setText("")
-                    binding.addWeight.setText("")
-                    app.saveFoodToFile()
-                    //println("Novo dodan element ${app.dataFoods}")
-
-                } catch (e: Exception) {
-                    Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
-                    Log.e(ContentValues.TAG, e.toString())
+        if(mealName != "null"){
+            // Edit
+            binding.addFoodName.setText(mealName)
+            binding.addFoodCalories.setText(mealCalories)
+            binding.addWeight.setText(mealAmount)
+            binding.addMealBtn.text = getString(R.string.fragment_input_meal_editMealBtn)
+            binding.addMealBtn.setOnClickListener {
+                if (isDataValid()) {
+                    try {
+                        app.updateFood(UUID, binding.addFoodCalories.text.toString().toInt(), binding.addWeight.text.toString().toInt(), binding.addFoodName.text.toString())
+                        activity?.onBackPressed()
+                        app.saveFoodToFile()
+                    } catch (e: Exception) {
+                        Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
+                        Log.e(ContentValues.TAG, e.toString())
+                    }
+                } else {
+                    Snackbar.make(view, "Invalid data", Snackbar.LENGTH_LONG).show()
                 }
-            } else {
-                Snackbar.make(view, "Invalid data", Snackbar.LENGTH_LONG).show()
             }
+        }
+        else
+        {
+            binding.addMealBtn.setOnClickListener {
+                if (isDataValid()) {
+                    try {
+                        app.dataFoods.addFood(
+                            Food(
+                                binding.addFoodName.text.toString(),
+                                binding.addFoodCalories.text.toString().toInt(),
+                                binding.addWeight.text.toString().toInt()
+                            )
+                        )
+                        binding.addFoodName.setText("")
+                        binding.addFoodCalories.setText("")
+                        binding.addWeight.setText("")
+                        app.saveFoodToFile()
+                        //println("Novo dodan element ${app.dataFoods}")
 
+                    } catch (e: Exception) {
+                        Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
+                        Log.e(ContentValues.TAG, e.toString())
+                    }
+                } else {
+                    Snackbar.make(view, "Invalid data", Snackbar.LENGTH_LONG).show()
+                }
+            }
         }
     }
 

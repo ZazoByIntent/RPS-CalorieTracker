@@ -18,6 +18,7 @@
     <string name="fragment_input_meal_addCalories">Amount of calories:</string>
     <string name="fragment_input_meal_addWeight">Food weight:</string>
     <string name="fragment_input_meal_addMealBtn">Add</string>
+    <string name="fragment_input_meal_editMealBtn">Edit</string>
     <string name="fragment_input_meal_description">Add new food, amount of calories and food weight.</string>
     <!-- END: fragment_meal_meal -->
     <string name="card_view_name">Name</string>
