@@ -40,8 +40,9 @@ class InputActivityFragment : Fragment() {
                             binding.addActivityCalories.text.toString().toDouble()
                         )
                     )
-                    //println(binding.addActivity.text.toString())
-                    //println(binding.addActivityCalories.text.toString().toDouble())
+                    app.saveActivityToFile()
+                    //app.DeleteActivity(0)
+                    //app.updateActivity("46d6253ed5fa4bc5bfc7c2fb33c0609b",113.5,"Ujete ribe")
                     binding.addActivity.setText("")
                     binding.addActivityCalories.setText("")
 

@@ -9,13 +9,17 @@ import java.io.File
 import java.io.IOException
 import org.apache.commons.io.FileUtils
 import android.content.Context
+import com.example.mylib.Activity
 
 const val FILE_FOOD = "mydatafood.json"
+const val FILE_ACTIVITY = "mydataactivity.json"
 
 class MyApplication : Application() {
     lateinit var dataFoods: ListOfFoods
     private lateinit var gsonFood: Gson
     private lateinit var fileFood: File
+    private lateinit var gsonActivity: Gson
+    private lateinit var fileActivity: File
 
 
     lateinit var dataActivity: ListOfActivities
@@ -33,8 +37,13 @@ class MyApplication : Application() {
             .setPrettyPrinting()
             .create()
         fileFood = File(filesDir, FILE_FOOD)
+        gsonActivity = GsonBuilder()
+            .setPrettyPrinting()
+            .create()
+        fileActivity=File(filesDir, FILE_ACTIVITY)
         Timber.d("File name path ${fileFood.path}")
         initFoodData()
+        initActivityData()
     }
 
     fun initFoodData() {
@@ -73,6 +82,44 @@ class MyApplication : Application() {
                     food.cal = cals
                     food.amount = amount
                     food.name = name
+                    saveFoodToFile()
+                }
+            }
+        } catch (e: Exception) {
+            Timber.e(e.message)
+        }
+    }
+    fun initActivityData() {
+        dataActivity= try { //www
+            //Timber.d("My file data:${FileUtils.readFileToString(fileFood)}")
+            gsonActivity.fromJson(FileUtils.readFileToString(fileActivity), ListOfActivities::class.java)
+        } catch (e: IOException) {
+            Timber.d("No file init data.")
+            ListOfActivities("First time init")
+        }
+    }
+    fun saveActivityToFile() {
+        try {
+            FileUtils.writeStringToFile(fileActivity,gsonActivity.toJson(dataActivity))
+            Timber.d("Save to file.")
+        } catch (e: IOException) {
+            Timber.d("Can't save " + fileActivity.path)
+        }
+    }
+    fun DeleteActivity(index: Int) {
+        try {
+            dataActivity.list.removeAt(index)
+            saveFoodToFile()
+        } catch (e: Exception) {
+            Timber.e(e.message)
+        }
+    }
+    fun updateActivity(id: String, burnedCalories: Double, name: String) {
+        try {
+            for (Activity: Activity in dataActivity.list) {
+                if (Activity.id == id) {
+                    Activity.name = name
+                    Activity.burnedCalories = burnedCalories
                     saveFoodToFile()
                 }
             }
