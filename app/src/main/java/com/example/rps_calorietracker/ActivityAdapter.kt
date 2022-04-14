@@ -10,13 +10,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mylib.ListOfActivities
 
 
-class ActivityAdapter(private val data : ListOfActivities) : RecyclerView.Adapter<ActivityAdapter.ViewHolder>(){
+class ActivityAdapter(private val data : ListOfActivities, private val onClickObject: ActivityAdapter.MyOnClick) : RecyclerView.Adapter<ActivityAdapter.ViewHolder>(){
+
+    interface MyOnClick {
+        fun onClick(p0: View?, position:Int)
+        fun onLongClick(p0:View?, position: Int)
+    }
+
 
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val tvName: TextView = itemView.findViewById(R.id.tvName)
         val tvCal: TextView = itemView.findViewById(R.id.tvCal)
         val tvAmount: TextView = itemView.findViewById(R.id.tvAmount)
-        // val line: CardView = itemView.findViewById(R.id.cvLine)
+        val line: CardView = itemView.findViewById(R.id.cvLine)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,6 +41,19 @@ class ActivityAdapter(private val data : ListOfActivities) : RecyclerView.Adapte
         holder.tvName.text = itemsViewModel.name
         holder.tvAmount.text = itemsViewModel.burnedCalories.toString()
         holder.tvCal.text = ""
+
+        holder.line.setOnClickListener(object:View.OnClickListener{
+            override fun onClick(p0: View?) {
+                onClickObject.onClick(p0,holder.absoluteAdapterPosition)
+            }
+        })
+
+        holder.line.setOnLongClickListener(object:View.OnLongClickListener{
+            override fun onLongClick(p0: View?): Boolean {
+                onClickObject.onLongClick(p0,holder.absoluteAdapterPosition)
+                return true
+            }
+        })
 
     }
 

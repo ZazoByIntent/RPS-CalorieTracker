@@ -54,7 +54,29 @@ class MainFragment : Fragment() {
 
             }
         })
-        val activityAdapter = ActivityAdapter(app.dataActivity)
+        val activityAdapter = ActivityAdapter(app.dataActivity,object:ActivityAdapter.MyOnClick{
+            override fun onClick(p0: View?, position: Int) {
+                if (p0 != null) {
+                    val bundle = Bundle(3)
+                    bundle.putString("activityName", app.dataActivity.list[position].name)
+                    bundle.putString("activityCal", app.dataActivity.list[position].burnedCalories.toString())
+                    bundle.putString("UUID", app.dataActivity.list[position].id)
+                    findNavController().navigate(R.id.action_fragment_main_to_inputActivityFragment, bundle)
+                }
+            }
+
+            override fun onLongClick(p0: View?, position: Int) {
+                if(app.dataActivity.list.size > 0)
+                {
+                    app.DeleteActivity(position)
+                    binding.rvActivity.adapter?.notifyItemRemoved(position)
+                    app.saveActivityToFile()
+                }else{
+                    Timber.d("empty")
+                }
+
+            }
+        })
         binding.rvMeal.adapter = mealAdapter
         binding.rvActivity.adapter = activityAdapter
 

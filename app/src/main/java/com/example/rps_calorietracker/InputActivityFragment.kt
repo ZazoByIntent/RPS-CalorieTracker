@@ -17,10 +17,20 @@ import com.google.android.material.snackbar.Snackbar
 class InputActivityFragment : Fragment() {
     private var _binding: FragmentInputActivityBinding? = null
     lateinit var app:MyApplication
+    private lateinit var activityName: String
+    private lateinit var activityCal : String
+    private lateinit var UUID : String
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (arguments != null) {
+            activityName = requireArguments().getString("activityName")!!
+            activityCal = requireArguments().getString("activityCal")!!
+            UUID = requireArguments().getString("UUID")!!
+        } else{
+            activityName = "null"
+        }
     }
 
     override fun onCreateView(
@@ -31,27 +41,43 @@ class InputActivityFragment : Fragment() {
         _binding = FragmentInputActivityBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.addActivityBtn.setOnClickListener {
+        if(activityName != "null"){
+            // Edit
+            binding.addActivity.setText(activityName)
+            binding.addActivityCalories.setText(activityCal)
+            binding.addActivityBtn.text = getString(R.string.fragment_input_activity_editActivityBtn)
+            binding.addActivityBtn.setOnClickListener {
+                try {
+                    app.updateActivity(UUID, binding.addActivityCalories.text.toString().toDouble(), binding.addActivity.text.toString())
+                    activity?.onBackPressed()
+                    app.saveActivityToFile()
+                } catch (e: Exception) {
+                    Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
+                    Log.e(ContentValues.TAG, e.toString())
+                }
+            }
+        }
+        else{
+            binding.addActivityBtn.setOnClickListener {
                 try {
                     app.dataActivity.list.add( Activity(
-                            binding.addActivity.text.toString(),
-                            binding.addActivityCalories.text.toString().toDouble()
-                        )
+                        binding.addActivity.text.toString(),
+                        binding.addActivityCalories.text.toString().toDouble()
+                    )
                     )
                     app.saveActivityToFile()
-                    //app.DeleteActivity(0)
-                    //app.updateActivity("46d6253ed5fa4bc5bfc7c2fb33c0609b",113.5,"Ujete ribe")
                     binding.addActivity.setText("")
                     binding.addActivityCalories.setText("")
-
 
                 } catch (e: Exception) {
                     Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
                     Log.e(ContentValues.TAG, e.toString())
                 }
-            println("Novo dodan element ${app.dataActivity}")
+                println("Novo dodan element ${app.dataActivity}")
+            }
         }
     }
     override fun onDestroyView() {

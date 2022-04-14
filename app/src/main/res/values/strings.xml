@@ -9,6 +9,7 @@
     <string name="fragment_input_activity_addActivity">Activity name:</string>
     <string name="fragment_input_activity_addCalories">Amount of calories:</string>
     <string name="fragment_input_activity_addActivityBtn">Add</string>
+    <string name="fragment_input_activity_editActivityBtn">Edit</string>
     <string name="fragment_input_activity_description">Add new activity and add burned calories, doing that activity.</string>
     <!-- END: fragment_input_activity -->
 
