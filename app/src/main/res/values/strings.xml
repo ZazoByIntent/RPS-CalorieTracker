@@ -1,8 +1,12 @@
 <resources>
+    <!-- BEGINNING: fragment_main -->
     <string name="app_name">RPS-CalorieTracker</string>
     <string name="add_meal">Add meal</string>
     <string name="add_activity">Add activity</string>
     <string name="about">About</string>
+    <string name="fragment_main_meal_rv">Foods: </string>
+    <string name="fragment_main_activity_rv">Activities: </string>
+    <!-- END: fragment_main -->
 
     <!-- BEGINNING: fragment_input_activity -->
     <string name="fragment_input_activity_title">Activity tracker</string>
@@ -26,10 +30,6 @@
     <string name="card_view_cal">Calories</string>
     <string name="card_view_amount">Amount</string>
 
-    <!-- BEGINNING: card_view -->
-
-    <!-- END: card_view -->
-
     <!-- BEGINNING: fragment_about -->
     <string name="fragment_about_title">About</string>
     <string name="fragment_about_add_name">Name:</string>
@@ -42,4 +42,12 @@
     <string name="fragment_about_contributors">Aljaž Hafner\nJernej Belcl\nTim Lašič\nGašper Zlodej</string>
     <!-- END: fragment_about -->
 
+    <!-- BEGINNING: card_view -->
+    <string name="card_view_addAmount">Portion weight:</string>
+    <string name="card_view_addCalories">Calorie intake:</string>
+    <!-- END: card_view -->
+
+    <!-- BEGINNING: card_view_activity -->
+    <string name="card_view_activity_addAmount">Calories burned:</string>
+    <!-- END: card_view_activity -->
 </resources>

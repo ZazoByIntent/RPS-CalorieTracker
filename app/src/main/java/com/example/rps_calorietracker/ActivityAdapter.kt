@@ -20,14 +20,13 @@ class ActivityAdapter(private val data : ListOfActivities, private val onClickOb
 
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val tvName: TextView = itemView.findViewById(R.id.tvName)
-        val tvCal: TextView = itemView.findViewById(R.id.tvCal)
         val tvAmount: TextView = itemView.findViewById(R.id.tvAmount)
-        val line: CardView = itemView.findViewById(R.id.cvLine)
+        val line: CardView = itemView.findViewById(R.id.cvActivity)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_view, parent, false)
+            .inflate(R.layout.card_view_activity, parent, false)
         return ViewHolder(view)
     }
 
@@ -40,7 +39,6 @@ class ActivityAdapter(private val data : ListOfActivities, private val onClickOb
 
         holder.tvName.text = itemsViewModel.name
         holder.tvAmount.text = itemsViewModel.burnedCalories.toString()
-        holder.tvCal.text = ""
 
         holder.line.setOnClickListener(object:View.OnClickListener{
             override fun onClick(p0: View?) {
