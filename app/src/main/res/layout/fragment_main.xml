@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainFragment">
 
+
 <!-- GUIDELINES -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_vertical_30percent"
@@ -23,25 +24,11 @@
         app:layout_constraintGuide_percent="0.7" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal_90percent"
+        android:id="@+id/guideline_horizontal_95percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal_50percent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.500684" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal_45percent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4514364" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_horizontal_5percent"
@@ -68,10 +55,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/fragment_main_activity_rv"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_50percent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_5percent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_45percent"
+        app:layout_constraintTop_toTopOf="parent"
         android:textSize="20sp"
         android:paddingHorizontal="20dp"/>
 
@@ -80,7 +67,7 @@
         android:id="@+id/rvMeal"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_45percent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_95percent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_5percent" />
@@ -89,10 +76,10 @@
         android:id="@+id/rvActivity"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_90percent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_95percent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_50percent"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_5percent"/>
 
 <!-- BUTTONS -->
     <!--
@@ -137,6 +124,26 @@
         app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/swap_rv_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/food_icon"
+        app:fabSize="normal"
+        app:layout_constraintEnd_toStartOf="@+id/fab_menu"
+        app:layout_constraintTop_toTopOf="@+id/fab_menu"/>
+    <TextView
+        android:id="@+id/swap_rv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/swap_rv"
+        app:layout_constraintBottom_toBottomOf="@+id/swap_rv_fab"
+        app:layout_constraintEnd_toStartOf="@+id/swap_rv_fab"
+        app:layout_constraintTop_toTopOf="@+id/swap_rv_fab" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_meal_fab"

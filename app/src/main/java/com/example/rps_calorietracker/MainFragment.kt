@@ -30,6 +30,7 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
+
     private fun CreateNewAdapter(){
         val mealAdapter = MealAdapter(app.dataFoods, object:MealAdapter.MyOnClick{
             override fun onClick(p0: View?, position: Int) {
@@ -85,11 +86,16 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.rvMeal.layoutManager = LinearLayoutManager(activity)
+        binding.rvActivity.visibility = View.GONE
+        binding.rvActivityText.visibility = View.GONE
         binding.rvActivity.layoutManager = LinearLayoutManager(activity)
         super.onViewCreated(view, savedInstanceState)
         CreateNewAdapter()
         var isVisible = false
+        var rvActivity = true
 
+        binding.swapRvFab.visibility = View.GONE
+        binding.swapRvText.visibility = View.GONE
         binding.addMealFab.visibility = View.GONE
         binding.addMealText.visibility = View.GONE
         binding.addActivityFab.visibility = View.GONE
@@ -107,8 +113,25 @@ class MainFragment : Fragment() {
         binding.aboutFab.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_main_to_aboutFragment)
         }
+        binding.swapRvFab.setOnClickListener {
+            if (rvActivity) {
+                binding.rvMeal.visibility = View.GONE
+                binding.rvFoodText.visibility = View.GONE
+                binding.rvActivity.visibility = View.VISIBLE
+                binding.rvActivityText.visibility = View.VISIBLE
+                rvActivity = false
+            } else if (!rvActivity) {
+                binding.rvActivity.visibility = View.GONE
+                binding.rvActivityText.visibility = View.GONE
+                binding.rvMeal.visibility = View.VISIBLE
+                binding.rvFoodText.visibility = View.VISIBLE
+                rvActivity = true
+            }
+        }
         binding.fabMenu.setOnClickListener {
             if (isVisible) {
+                binding.swapRvFab.visibility = View.GONE
+                binding.swapRvText.visibility = View.GONE
                 binding.addMealFab.visibility = View.GONE
                 binding.addMealText.visibility = View.GONE
                 binding.addActivityFab.visibility = View.GONE
@@ -117,6 +140,8 @@ class MainFragment : Fragment() {
                 binding.aboutText.visibility = View.GONE
                 isVisible = false
             } else if (!isVisible) {
+                binding.swapRvFab.visibility = View.VISIBLE
+                binding.swapRvText.visibility = View.VISIBLE
                 binding.addMealFab.visibility = View.VISIBLE
                 binding.addMealText.visibility = View.VISIBLE
                 binding.addActivityFab.visibility = View.VISIBLE

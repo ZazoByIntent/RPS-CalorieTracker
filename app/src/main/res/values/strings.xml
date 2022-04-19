@@ -3,6 +3,7 @@
     <string name="app_name">RPS-CalorieTracker</string>
     <string name="add_meal">Add meal</string>
     <string name="add_activity">Add activity</string>
+    <string name="swap_rv">Change recycleview</string>
     <string name="about">About</string>
     <string name="fragment_main_meal_rv">Foods: </string>
     <string name="fragment_main_activity_rv">Activities: </string>
