@@ -6,18 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rps_calorietracker.databinding.FragmentMainBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import timber.log.Timber
 
 class MainFragment : Fragment() {
     lateinit var app:MyApplication
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,15 +88,43 @@ class MainFragment : Fragment() {
         binding.rvActivity.layoutManager = LinearLayoutManager(activity)
         super.onViewCreated(view, savedInstanceState)
         CreateNewAdapter()
+        var isVisible = false
 
-        binding.btnAddMeal.setOnClickListener {
+        binding.addMealFab.visibility = View.GONE
+        binding.addMealText.visibility = View.GONE
+        binding.addActivityFab.visibility = View.GONE
+        binding.addActivityText.visibility = View.GONE
+        binding.aboutFab.visibility = View.GONE
+        binding.aboutText.visibility = View.GONE
+
+
+        binding.addMealFab.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_main_to_inputMealFragment)
         }
-        binding.btnAddActivity.setOnClickListener {
+        binding.addActivityFab.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_main_to_inputActivityFragment)
         }
-        binding.btnAbout.setOnClickListener {
+        binding.aboutFab.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_main_to_aboutFragment)
+        }
+        binding.fabMenu.setOnClickListener {
+            if (isVisible) {
+                binding.addMealFab.visibility = View.GONE
+                binding.addMealText.visibility = View.GONE
+                binding.addActivityFab.visibility = View.GONE
+                binding.addActivityText.visibility = View.GONE
+                binding.aboutFab.visibility = View.GONE
+                binding.aboutText.visibility = View.GONE
+                isVisible = false
+            } else if (!isVisible) {
+                binding.addMealFab.visibility = View.VISIBLE
+                binding.addMealText.visibility = View.VISIBLE
+                binding.addActivityFab.visibility = View.VISIBLE
+                binding.addActivityText.visibility = View.VISIBLE
+                binding.aboutFab.visibility = View.VISIBLE
+                binding.aboutText.visibility = View.VISIBLE
+                isVisible = true
+            }
         }
     }
 

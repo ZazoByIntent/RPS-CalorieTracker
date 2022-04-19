@@ -95,6 +95,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_50percent"/>
 
 <!-- BUTTONS -->
+    <!--
     <Button
         android:id="@+id/btn_AddMeal"
         android:layout_width="wrap_content"
@@ -124,5 +125,76 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_70percent"
         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_90percent" />
+    -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/menu_icon"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_meal_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/food_icon"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/fab_menu"
+        app:layout_constraintEnd_toEndOf="@+id/fab_menu"
+        app:layout_constraintStart_toStartOf="@+id/fab_menu" />
+    <TextView
+        android:id="@+id/add_meal_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/add_meal"
+        app:layout_constraintBottom_toBottomOf="@+id/add_meal_fab"
+        app:layout_constraintEnd_toStartOf="@+id/add_meal_fab"
+        app:layout_constraintTop_toTopOf="@+id/add_meal_fab" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_activity_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/activity_icon"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/add_meal_fab"
+        app:layout_constraintEnd_toEndOf="@+id/add_meal_fab"
+        app:layout_constraintStart_toStartOf="@+id/add_meal_fab" />
+    <TextView
+        android:id="@+id/add_activity_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/add_activity"
+        app:layout_constraintBottom_toBottomOf="@+id/add_activity_fab"
+        app:layout_constraintEnd_toStartOf="@+id/add_activity_fab"
+        app:layout_constraintTop_toTopOf="@+id/add_activity_fab" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/about_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/about_icon"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/add_activity_fab"
+        app:layout_constraintEnd_toEndOf="@+id/add_activity_fab"
+        app:layout_constraintStart_toStartOf="@+id/add_activity_fab" />
+    <TextView
+        android:id="@+id/about_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/about"
+        app:layout_constraintBottom_toBottomOf="@+id/about_fab"
+        app:layout_constraintEnd_toStartOf="@+id/about_fab"
+        app:layout_constraintTop_toTopOf="@+id/about_fab" />
 </androidx.constraintlayout.widget.ConstraintLayout>
