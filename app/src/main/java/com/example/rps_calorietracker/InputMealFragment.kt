@@ -55,9 +55,29 @@ class InputMealFragment : Fragment() {
             binding.addMealBtn.setOnClickListener {
                 if (isDataValid()) {
                     try {
-                        app.updateFood(UUID, binding.addFoodCalories.text.toString().toInt(), binding.addWeight.text.toString().toInt(), binding.addFoodName.text.toString())
-                        activity?.onBackPressed()
-                        app.saveFoodToFile()
+                        val builder = android.app.AlertDialog.Builder(context)
+                        builder.setTitle("Update")
+                        builder.setMessage("Are you sure you want to update \n$mealName($mealCalories calories, $mealAmount grams) to \n" +
+                                "${binding.addFoodName.text.toString()}(${binding.addFoodCalories.text.toString()} calories, ${binding.addWeight.text.toString()} grams)")
+                        builder.setIcon(android.R.drawable.ic_menu_edit)
+                        builder.setPositiveButton("Yes"){dialogInterface, which -> //performing positive action
+                            Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
+
+                            app.updateFood(UUID, binding.addFoodCalories.text.toString().toInt(), binding.addWeight.text.toString().toInt(), binding.addFoodName.text.toString())
+                            activity?.onBackPressed()
+                            app.saveFoodToFile()
+                        }
+                        builder.setNeutralButton("Cancel"){dialogInterface , which -> //performing cancel action
+                            Toast.makeText(context,"clicked cancel",Toast.LENGTH_LONG).show()
+                        }
+                        builder.setNegativeButton("No"){dialogInterface, which -> //performing negative action
+                            Toast.makeText(context,"clicked No", Toast.LENGTH_LONG).show()
+                        }
+
+                        val alertDialog: android.app.AlertDialog = builder.create()
+                        alertDialog.setCancelable(false)
+                        alertDialog.show()
+
                     } catch (e: Exception) {
                         Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
                         Log.e(ContentValues.TAG, e.toString())

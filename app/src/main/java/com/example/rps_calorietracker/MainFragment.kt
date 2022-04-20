@@ -47,9 +47,26 @@ class MainFragment : Fragment() {
             override fun onLongClick(p0: View?, position: Int) {
                 if(app.dataFoods.listOfFoods.size > 0)
                 {
-                    app.DeleteFood(position)
-                    binding.rvMeal.adapter?.notifyItemRemoved(position)
-                    app.saveFoodToFile()
+                    val builder = android.app.AlertDialog.Builder(context)
+                    builder.setTitle("Delete")
+                    builder.setMessage("Meal ${app.dataFoods.listOfFoods[position].toString()}")
+                    builder.setIcon(android.R.drawable.ic_dialog_alert)
+                    builder.setPositiveButton("Yes"){dialogInterface, which -> //performing positive action
+                        Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
+                        app.DeleteFood(position)
+                        binding.rvMeal.adapter?.notifyItemRemoved(position)
+                        app.saveFoodToFile()
+                    }
+                    builder.setNeutralButton("Cancel"){dialogInterface , which -> //performing cancel action
+                        Toast.makeText(context,"clicked cancel",Toast.LENGTH_LONG).show()
+                    }
+                    builder.setNegativeButton("No"){dialogInterface, which -> //performing negative action
+                        Toast.makeText(context,"clicked No", Toast.LENGTH_LONG).show()
+                    }
+
+                    val alertDialog: android.app.AlertDialog = builder.create()
+                    alertDialog.setCancelable(false)
+                    alertDialog.show()
                 }else{
                     Timber.d("empty")
                 }
