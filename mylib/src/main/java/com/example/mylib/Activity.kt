@@ -9,7 +9,7 @@ class Activity(var name: String, var burnedCalories: Double, var id: String = UU
             throw IllegalArgumentException("Napacna vrednost pokurjenih kalorij")
     }
     override fun toString(): String {
-        return "ID: $id ,Aktivnost: $name has $burnedCalories burned calories"
+        return "Activity: $name has burned $burnedCalories  calories"
     }
 }
 /*
