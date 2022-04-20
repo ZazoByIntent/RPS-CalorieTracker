@@ -9,10 +9,14 @@ import java.io.File
 import java.io.IOException
 import org.apache.commons.io.FileUtils
 import android.content.Context
+import android.content.SharedPreferences
 import com.example.mylib.Activity
+import java.util.*
 
 const val FILE_FOOD = "mydatafood.json"
 const val FILE_ACTIVITY = "mydataactivity.json"
+const val MY_SP_FILE_NAME = "myshared.data"
+
 
 class MyApplication : Application() {
     lateinit var dataFoods: ListOfFoods
@@ -20,6 +24,7 @@ class MyApplication : Application() {
     private lateinit var fileFood: File
     private lateinit var gsonActivity: Gson
     private lateinit var fileActivity: File
+    private lateinit var sharedPref: SharedPreferences
 
 
     lateinit var dataActivity: ListOfActivities
@@ -44,6 +49,29 @@ class MyApplication : Application() {
         Timber.d("File name path ${fileFood.path}")
         initFoodData()
         initActivityData()
+        initShared()
+        if(!containsID()) {
+            saveID(UUID.randomUUID().toString().replace("-", ""))
+        }
+    }
+
+    private fun initShared() {
+        sharedPref = getSharedPreferences(MY_SP_FILE_NAME, Context.MODE_PRIVATE)
+    }
+
+    private fun saveID(id:String) {
+        with(sharedPref.edit()){
+            putString("ID", id)
+            apply()
+        }
+    }
+
+    fun getID():String? {
+        return sharedPref.getString("ID","NoData")
+    }
+
+    private fun containsID() : Boolean{
+        return sharedPref.contains("ID")
     }
 
     fun initFoodData() {

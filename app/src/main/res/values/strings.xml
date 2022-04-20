@@ -41,6 +41,7 @@
     <string name="fragment_about_version">Pre-alpha</string>
     <string name="fragment_about_add_contributors">Developed by:</string>
     <string name="fragment_about_contributors">Aljaž Hafner\nJernej Belcl\nTim Lašič\nGašper Zlodej</string>
+    <string name="fragment_about_UUID">UUID</string>
     <!-- END: fragment_about -->
 
     <!-- BEGINNING: card_view -->
