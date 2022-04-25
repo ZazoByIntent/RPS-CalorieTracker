@@ -38,7 +38,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.08" />
 
-
+<!--
     <TextView
         android:id="@+id/fragment_title"
         android:layout_width="wrap_content"
@@ -49,15 +49,15 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline_mid_vertical_8percent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left" />
-
+-->
 
     <TextView
         android:id="@+id/Static_AppVersion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"
         android:text="@string/fragment_about_add_version"
+        style="@style/Textview"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_mid_vertical_8percent" />
@@ -78,6 +78,7 @@
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:text="@string/fragment_about_add_name"
+        style="@style/Textview"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
         app:layout_constraintTop_toBottomOf="@+id/AppVersion" />
@@ -97,6 +98,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="@string/fragment_about_add_description"
+        style="@style/Textview"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
@@ -119,6 +121,7 @@
         android:layout_marginTop="20dp"
         android:textStyle="bold"
         android:text="@string/fragment_about_add_contributors"
+        style="@style/Textview"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
         app:layout_constraintTop_toBottomOf="@+id/AppDescription" />
@@ -132,13 +135,23 @@
         app:layout_constraintTop_toBottomOf="@+id/Static_AppContributors" />
 
     <TextView
+        android:id="@+id/Static_AppUUID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:text="@string/fragment_about_add_UUID"
+        style="@style/Textview"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
+        app:layout_constraintTop_toBottomOf="@+id/AppContributors" />
+    <TextView
         android:id="@+id/tvUUID"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/fragment_about_UUID"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left2"
-        app:layout_constraintTop_toBottomOf="@+id/AppContributors" />
+        app:layout_constraintTop_toBottomOf="@+id/Static_AppUUID" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

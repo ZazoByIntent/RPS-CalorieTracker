@@ -2,15 +2,27 @@
     <!-- Base application theme. -->
     <style name="Theme.RPSCalorieTracker" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/colorDark</item>
+        <item name="colorPrimaryVariant">@color/colorDarkVariant</item>
+        <item name="colorOnPrimary">@color/themeDark</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/colorDark</item>
+        <item name="colorSecondaryVariant">@color/colorDarkVariant</item>
+        <item name="colorOnSecondary">@color/themeDark</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/colorDark</item>
         <!-- Customize your theme here. -->
+        <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Primary</item>
+    </style>
+    <style name="Textview">
+        <item name="android:textColor">@color/colorDarkVariant</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CardView_theme">
+        <item name="cardBackgroundColor">@color/colorDarkVariant</item>
+    </style>
+    <style name="CardView_text">
+        <item name="android:textColor">@color/themeDark</item>
     </style>
 </resources>

@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -29,7 +31,6 @@ class MainFragment : Fragment() {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     private fun CreateNewAdapter(){
         val mealAdapter = MealAdapter(app.dataFoods, object:MealAdapter.MyOnClick{
@@ -119,10 +120,14 @@ class MainFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        (activity as AppCompatActivity).supportActionBar?.title = "Foods:"
+
         binding.rvMeal.layoutManager = LinearLayoutManager(activity)
         binding.rvActivity.visibility = View.GONE
-        binding.rvActivityText.visibility = View.GONE
+        //binding.rvActivityText.visibility = View.GONE
         binding.rvActivity.layoutManager = LinearLayoutManager(activity)
+
         super.onViewCreated(view, savedInstanceState)
         CreateNewAdapter()
         var isVisible = false
@@ -136,6 +141,8 @@ class MainFragment : Fragment() {
         binding.addActivityText.visibility = View.GONE
         binding.aboutFab.visibility = View.GONE
         binding.aboutText.visibility = View.GONE
+        binding.settingsFab.visibility = View.GONE
+        binding.settingsText.visibility = View.GONE
 
 
         binding.addMealFab.setOnClickListener {
@@ -147,18 +154,23 @@ class MainFragment : Fragment() {
         binding.aboutFab.setOnClickListener {
             findNavController().navigate(R.id.action_fragment_main_to_aboutFragment)
         }
+        binding.settingsFab.setOnClickListener {
+            findNavController().navigate(R.id.action_fragment_main_to_settingsFragment)
+        }
         binding.swapRvFab.setOnClickListener {
             if (rvActivity) {
                 binding.rvMeal.visibility = View.GONE
-                binding.rvFoodText.visibility = View.GONE
+                //binding.rvFoodText.visibility = View.GONE
                 binding.rvActivity.visibility = View.VISIBLE
-                binding.rvActivityText.visibility = View.VISIBLE
+                //binding.rvActivityText.visibility = View.VISIBLE
+                (activity as AppCompatActivity).supportActionBar?.title = "Activities:"
                 rvActivity = false
             } else if (!rvActivity) {
                 binding.rvActivity.visibility = View.GONE
-                binding.rvActivityText.visibility = View.GONE
+                //binding.rvActivityText.visibility = View.GONE
                 binding.rvMeal.visibility = View.VISIBLE
-                binding.rvFoodText.visibility = View.VISIBLE
+                //binding.rvFoodText.visibility = View.VISIBLE
+                (activity as AppCompatActivity).supportActionBar?.title = "Foods:"
                 rvActivity = true
             }
         }
@@ -172,6 +184,8 @@ class MainFragment : Fragment() {
                 binding.addActivityText.visibility = View.GONE
                 binding.aboutFab.visibility = View.GONE
                 binding.aboutText.visibility = View.GONE
+                binding.settingsFab.visibility = View.GONE
+                binding.settingsText.visibility = View.GONE
                 isVisible = false
             } else if (!isVisible) {
                 binding.swapRvFab.visibility = View.VISIBLE
@@ -182,6 +196,8 @@ class MainFragment : Fragment() {
                 binding.addActivityText.visibility = View.VISIBLE
                 binding.aboutFab.visibility = View.VISIBLE
                 binding.aboutText.visibility = View.VISIBLE
+                binding.settingsFab.visibility = View.VISIBLE
+                binding.settingsText.visibility = View.VISIBLE
                 isVisible = true
             }
         }

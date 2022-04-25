@@ -10,35 +10,35 @@
 
 <!-- GUIDELINES -->
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_vertical_30percent"
+        android:id="@+id/guideline_vertical_1percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.01" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_vertical_70percent"
+        android:id="@+id/guideline_vertical_99percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.7" />
+        app:layout_constraintGuide_percent="0.99" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal_95percent"
+        android:id="@+id/guideline_horizontal_99percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.99" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal_5percent"
+        android:id="@+id/guideline_horizontal_1percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.01" />
 
 <!-- TEXTVIEW -->
-    <TextView
+    <!--<TextView
         android:id="@+id/rv_food_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,26 +60,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="20sp"
-        android:paddingHorizontal="20dp"/>
+        android:paddingHorizontal="20dp"/> -->
 
 <!-- RECYCLE VIEW -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMeal"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_95percent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_5percent" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_99percent"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_99percent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1percent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_1percent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvActivity"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_95percent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_5percent"/>
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_99percent"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_99percent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1percent"
+        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_1percent"/>
 
 <!-- BUTTONS -->
     <!--
@@ -131,7 +131,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
-        android:src="@drawable/food_icon"
+        android:src="@drawable/change_rv_icon"
         app:fabSize="normal"
         app:layout_constraintEnd_toStartOf="@+id/fab_menu"
         app:layout_constraintTop_toTopOf="@+id/fab_menu"/>
@@ -204,4 +204,24 @@
         app:layout_constraintBottom_toBottomOf="@+id/about_fab"
         app:layout_constraintEnd_toStartOf="@+id/about_fab"
         app:layout_constraintTop_toTopOf="@+id/about_fab" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/settings_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/settings_icon"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/about_fab"
+        app:layout_constraintEnd_toEndOf="@+id/about_fab"
+        app:layout_constraintStart_toStartOf="@+id/about_fab" />
+    <TextView
+        android:id="@+id/settings_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/settings"
+        app:layout_constraintBottom_toBottomOf="@+id/settings_fab"
+        app:layout_constraintEnd_toStartOf="@+id/settings_fab"
+        app:layout_constraintTop_toTopOf="@+id/settings_fab" />
 </androidx.constraintlayout.widget.ConstraintLayout>

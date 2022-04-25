@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InputActivityFragment">
+    tools:context=".SettingsFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_vertical_left"
@@ -12,108 +12,89 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.05" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_vertical_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_vertical_middle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.4" />
-
-
+        app:layout_constraintGuide_percent="0.5" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_mid_vertical_8percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.08" />
-
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_mid_vertical_15percent"
+        android:id="@+id/guideline_mid_vertical_92percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
-<!--
-    <TextView
-        android:id="@+id/fragment_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_input_activity_title"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_mid_vertical_15percent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toTopOf="@+id/guideline_mid_vertical_8percent" />
--->
-    <TextView
-        android:id="@+id/fragment_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Textview"
-        android:text="@string/fragment_input_activity_description"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toTopOf="@+id/guideline_mid_vertical_8percent" />
+        app:layout_constraintGuide_percent="0.92" />
 
     <TextView
-        android:id="@+id/enter_activity_text"
+        android:id="@+id/enter_meal_goal_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         style="@style/Textview"
-        android:text="@string/fragment_input_activity_addActivity"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
+        android:text="@string/fragment_settings_addMealGoal"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_desc" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline_mid_vertical_8percent" />
 
     <EditText
-        android:id="@+id/addActivity"
+        android:id="@+id/addMealGoal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toBottomOf="@+id/enter_activity_text" />
-
-    <TextView
-        android:id="@+id/enter_calories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Textview"
-        android:text="@string/fragment_input_activity_addCalories"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toBottomOf="@+id/addActivity" />
-
-    <EditText
-        android:id="@+id/addActivityCalories"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:inputType="number"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toBottomOf="@+id/enter_calories" />
+        app:layout_constraintTop_toBottomOf="@+id/enter_meal_goal_text" />
 
-    <Button
-        android:id="@+id/addActivityBtn"
+    <TextView
+        android:id="@+id/enter_activity_goal_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="@string/fragment_input_activity_addActivityBtn"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
+        android:layout_marginTop="20dp"
+        style="@style/Textview"
+        android:text="@string/fragment_settings_addActivityGoal"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toBottomOf="@+id/addActivityCalories" />
+        app:layout_constraintTop_toBottomOf="@+id/addMealGoal" />
 
+    <EditText
+        android:id="@+id/addActivityGoal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
+        app:layout_constraintTop_toBottomOf="@+id/enter_activity_goal_text" />
+
+    <TextView
+        android:id="@+id/switchThemeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/swapThemesButton"
+        style="@style/Textview"
+        app:layout_constraintBottom_toBottomOf="@+id/switchTheme"
+        app:layout_constraintTop_toTopOf="@+id/switchTheme"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/switchTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/mode_icon"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_mid_vertical_92percent"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_middle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

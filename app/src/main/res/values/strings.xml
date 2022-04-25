@@ -5,6 +5,7 @@
     <string name="add_activity">Add activity</string>
     <string name="swap_rv">Change recycleview</string>
     <string name="about">About</string>
+    <string name="settings">Settings</string>
     <string name="fragment_main_meal_rv">Foods: </string>
     <string name="fragment_main_activity_rv">Activities: </string>
     <!-- END: fragment_main -->
@@ -26,6 +27,7 @@
     <string name="fragment_input_meal_addMealBtn">Add</string>
     <string name="fragment_input_meal_editMealBtn">Edit</string>
     <string name="fragment_input_meal_description">Add new food, amount of calories and food weight.</string>
+
     <!-- END: fragment_meal_meal -->
     <string name="card_view_name">Name</string>
     <string name="card_view_cal">Calories</string>
@@ -38,9 +40,10 @@
     <string name="fragment_about_add_description">Description:</string>
     <string name="fragment_about_description">Calorie tracker is your personal diary to help you reach your goals in weight gain or weight loss.\nTrack your daily food intake and your daily workout, so you know how much of each you still need, to reach your set goals.\nMake reminders and become the very best version of yourself you have always wanted to be.</string>
     <string name="fragment_about_add_version">Version:</string>
-    <string name="fragment_about_version">Pre-alpha</string>
+    <string name="fragment_about_version">Alpha</string>
     <string name="fragment_about_add_contributors">Developed by:</string>
     <string name="fragment_about_contributors">Aljaž Hafner\nJernej Belcl\nTim Lašič\nGašper Zlodej</string>
+    <string name="fragment_about_add_UUID">UUID:</string>
     <string name="fragment_about_UUID">UUID</string>
     <!-- END: fragment_about -->
 
@@ -52,4 +55,10 @@
     <!-- BEGINNING: card_view_activity -->
     <string name="card_view_activity_addAmount">Calories burned:</string>
     <!-- END: card_view_activity -->
+
+    <!-- BEGINNING: settings_activity -->
+    <string name="fragment_settings_addMealGoal">Your daily calories intake goal:</string>
+    <string name="fragment_settings_addActivityGoal">Your daily calories burned goal:</string>
+    <string name="swapThemesButton">Change theme:</string>
+    <!-- END: settings_activity -->
 </resources>

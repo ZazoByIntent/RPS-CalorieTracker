@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.example.rps_calorietracker.databinding.FragmentAboutBinding
 
 
@@ -27,6 +28,7 @@ class AboutFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        (activity as AppCompatActivity).supportActionBar?.title = "About"
         super.onViewCreated(view, savedInstanceState)
         binding.tvUUID.text = app.getID()
     }

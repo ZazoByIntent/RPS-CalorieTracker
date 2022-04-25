@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.15" />
-
+<!--
     <TextView
         android:id="@+id/fragment_title"
         android:layout_width="wrap_content"
@@ -55,21 +55,23 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_mid_vertical_8percent" />
-
+-->
     <TextView
         android:id="@+id/fragment_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fragment_input_meal_description"
+        style="@style/Textview"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toTopOf="@+id/guideline_mid_vertical_15percent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_mid_vertical_8percent" />
 
     <TextView
         android:id="@+id/enter_food_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        style="@style/Textview"
         android:text="@string/fragment_input_meal_addFood"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
@@ -90,6 +92,7 @@
         android:layout_height="wrap_content"
         android:text="@string/fragment_input_meal_addCalories"
         android:layout_marginTop="25dp"
+        style="@style/Textview"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
         app:layout_constraintTop_toBottomOf="@+id/addFoodName" />
@@ -109,6 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fragment_input_meal_addWeight"
+        style="@style/Textview"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
