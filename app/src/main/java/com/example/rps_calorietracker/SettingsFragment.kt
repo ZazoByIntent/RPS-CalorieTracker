@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.rps_calorietracker.databinding.FragmentSettingsBinding
+import com.google.android.material.snackbar.Snackbar
 
 class SettingsFragment : Fragment() {
     lateinit var app: MyApplication
@@ -38,8 +39,10 @@ class SettingsFragment : Fragment() {
         binding.switchTheme.setOnClickListener {
             if (DarkMode) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                Snackbar.make(view,getString(R.string.dark_mode_no), Snackbar.LENGTH_SHORT).show()
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                Snackbar.make(view,getString(R.string.dark_mode_yes), Snackbar.LENGTH_SHORT).show()
             }
         }
 

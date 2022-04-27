@@ -61,4 +61,18 @@
     <string name="fragment_settings_addActivityGoal">Your daily calories burned goal:</string>
     <string name="swapThemesButton">Change theme:</string>
     <!-- END: settings_activity -->
+
+    <!-- BEGINNING: snackbar_prompts -->
+    <string name="activity_added">Activity added</string>
+    <string name="activity_edited">Activity edited</string>
+    <string name="meal_added">Meal added</string>
+    <string name="meal_edited">Meal edited</string>
+    <string name="cancelled">Operation cancelled</string>
+    <string name="invalid_data">Data invalid</string>
+    <string name="deleted">Element deleted</string>
+    <string name="dark_mode_no">Dark mode disabled</string>
+    <string name="dark_mode_yes">Dark mode enabled</string>
+
+    <!-- END: snackbar_prompts -->
+
 </resources>

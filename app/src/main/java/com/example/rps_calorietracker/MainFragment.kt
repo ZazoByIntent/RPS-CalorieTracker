@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rps_calorietracker.databinding.FragmentMainBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 
 class MainFragment : Fragment() {
@@ -53,16 +54,23 @@ class MainFragment : Fragment() {
                     builder.setMessage("Meal ${app.dataFoods.listOfFoods[position].toString()}")
                     builder.setIcon(android.R.drawable.ic_dialog_alert)
                     builder.setPositiveButton("Yes"){dialogInterface, which -> //performing positive action
-                        Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
                         app.DeleteFood(position)
                         binding.rvMeal.adapter?.notifyItemRemoved(position)
                         app.saveFoodToFile()
+                        if (p0 != null) {
+                            Snackbar.make(p0,getString(R.string.deleted), Snackbar.LENGTH_LONG).show()
+                        }
                     }
                     builder.setNeutralButton("Cancel"){dialogInterface , which -> //performing cancel action
-                        Toast.makeText(context,"clicked cancel",Toast.LENGTH_LONG).show()
+                        if (p0 != null) {
+                            Snackbar.make(p0,getString(R.string.cancelled), Snackbar.LENGTH_LONG).show()
+                        }
                     }
                     builder.setNegativeButton("No"){dialogInterface, which -> //performing negative action
-                        Toast.makeText(context,"clicked No", Toast.LENGTH_LONG).show()
+                        if (p0 != null) {
+                            Snackbar.make(p0,getString(R.string.cancelled), Snackbar.LENGTH_LONG).show()
+                        }
+
                     }
 
                     val alertDialog: android.app.AlertDialog = builder.create()
@@ -96,13 +104,20 @@ class MainFragment : Fragment() {
                         Toast.makeText(context,"Deleted",Toast.LENGTH_LONG).show()
                         app.DeleteActivity(position)
                         binding.rvActivity.adapter?.notifyItemRemoved(position)
-                        app.saveActivityToFile()
+                        if (p0 != null) {
+                            Snackbar.make(p0,getString(R.string.deleted), Snackbar.LENGTH_LONG).show()
+                        }
                     }
                     builder.setNeutralButton("Cancel"){dialogInterface , which -> //performing cancel action
-                        Toast.makeText(context,"Canceled",Toast.LENGTH_LONG).show()
+                        if (p0 != null) {
+                            Snackbar.make(p0,getString(R.string.cancelled), Snackbar.LENGTH_LONG).show()
+                        }
                     }
                     builder.setNegativeButton("No"){dialogInterface, which -> //performing negative action
-                        Toast.makeText(context,"Declined", Toast.LENGTH_LONG).show()
+                        if (p0 != null) {
+                            Snackbar.make(p0,getString(R.string.cancelled), Snackbar.LENGTH_LONG).show()
+                        }
+
                     }
 
                     val alertDialog: android.app.AlertDialog = builder.create()
@@ -116,7 +131,6 @@ class MainFragment : Fragment() {
         })
         binding.rvMeal.adapter = mealAdapter
         binding.rvActivity.adapter = activityAdapter
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

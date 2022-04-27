@@ -63,17 +63,16 @@ class InputMealFragment : Fragment() {
                                 "${binding.addFoodName.text.toString()}(${binding.addFoodCalories.text.toString()} calories, ${binding.addWeight.text.toString()} grams)")
                         builder.setIcon(android.R.drawable.ic_menu_edit)
                         builder.setPositiveButton("Yes"){dialogInterface, which -> //performing positive action
-                            Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
-
                             app.updateFood(UUID, binding.addFoodCalories.text.toString().toInt(), binding.addWeight.text.toString().toInt(), binding.addFoodName.text.toString())
                             activity?.onBackPressed()
                             app.saveFoodToFile()
+                            Snackbar.make(view,getString(R.string.meal_edited), Snackbar.LENGTH_SHORT).show()
                         }
                         builder.setNeutralButton("Cancel"){dialogInterface , which -> //performing cancel action
-                            Toast.makeText(context,"clicked cancel",Toast.LENGTH_LONG).show()
+                            Snackbar.make(view,getString(R.string.cancelled), Snackbar.LENGTH_SHORT).show()
                         }
                         builder.setNegativeButton("No"){dialogInterface, which -> //performing negative action
-                            Toast.makeText(context,"clicked No", Toast.LENGTH_LONG).show()
+                            Snackbar.make(view,getString(R.string.cancelled), Snackbar.LENGTH_SHORT).show()
                         }
 
                         val alertDialog: android.app.AlertDialog = builder.create()
@@ -81,11 +80,11 @@ class InputMealFragment : Fragment() {
                         alertDialog.show()
 
                     } catch (e: Exception) {
-                        Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
                         Log.e(ContentValues.TAG, e.toString())
                     }
                 } else {
-                    Snackbar.make(view, "Invalid data", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(view, getString(R.string.invalid_data), Snackbar.LENGTH_SHORT).show()
                 }
             }
         }
@@ -105,14 +104,15 @@ class InputMealFragment : Fragment() {
                         binding.addFoodCalories.setText("")
                         binding.addWeight.setText("")
                         app.saveFoodToFile()
+                        Snackbar.make(view,getString(R.string.meal_added), Snackbar.LENGTH_SHORT).show()
                         //println("Novo dodan element ${app.dataFoods}")
 
                     } catch (e: Exception) {
-                        Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
                         Log.e(ContentValues.TAG, e.toString())
                     }
                 } else {
-                    Snackbar.make(view, "Invalid data", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(view, getString(R.string.invalid_data), Snackbar.LENGTH_LONG).show()
                 }
             }
         }

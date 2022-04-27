@@ -62,24 +62,23 @@ class InputActivityFragment : Fragment() {
                             "${binding.addActivity.text}(burned calories: ${binding.addActivityCalories.text})")
                     builder.setIcon(android.R.drawable.ic_menu_edit)
                     builder.setPositiveButton("Yes"){dialogInterface, which -> //performing positive action
-                        Toast.makeText(context,"Edited",Toast.LENGTH_LONG).show()
-
                         app.updateActivity(UUID, binding.addActivityCalories.text.toString().toDouble(), binding.addActivity.text.toString())
                         activity?.onBackPressed()
                         app.saveActivityToFile()
+                        Snackbar.make(view,getString(R.string.activity_edited), Snackbar.LENGTH_SHORT).show()
                     }
                     builder.setNeutralButton("Cancel"){dialogInterface , which -> //performing cancel action
-                        Toast.makeText(context,"Canceled",Toast.LENGTH_LONG).show()
+                        Snackbar.make(view,getString(R.string.cancelled), Snackbar.LENGTH_SHORT).show()
                     }
                     builder.setNegativeButton("No"){dialogInterface, which -> //performing negative action
-                        Toast.makeText(context,"Declined", Toast.LENGTH_LONG).show()
+                        Snackbar.make(view,getString(R.string.cancelled), Snackbar.LENGTH_SHORT).show()
                     }
 
                     val alertDialog: android.app.AlertDialog = builder.create()
                     alertDialog.setCancelable(false)
                     alertDialog.show()
                 } catch (e: Exception) {
-                    Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
                     Log.e(ContentValues.TAG, e.toString())
                 }
             }
@@ -95,9 +94,10 @@ class InputActivityFragment : Fragment() {
                     app.saveActivityToFile()
                     binding.addActivity.setText("")
                     binding.addActivityCalories.setText("")
+                    Snackbar.make(view,getString(R.string.activity_added), Snackbar.LENGTH_SHORT).show()
 
                 } catch (e: Exception) {
-                    Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
                     Log.e(ContentValues.TAG, e.toString())
                 }
                 println("Novo dodan element ${app.dataActivity}")
