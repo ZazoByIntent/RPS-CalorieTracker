@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rps_calorietracker.databinding.FragmentInputMealBinding
@@ -19,9 +20,9 @@ class InputMealFragment : Fragment() {
     private var _binding: FragmentInputMealBinding? = null
     lateinit var app: MyApplication
     private lateinit var mealName: String
-    private lateinit var mealCalories : String
-    private lateinit var mealAmount : String
-    private lateinit var UUID : String
+    private lateinit var mealCalories: String
+    private lateinit var mealAmount: String
+    private lateinit var UUID: String
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class InputMealFragment : Fragment() {
             mealCalories = requireArguments().getString("mealCalories")!!
             mealAmount = requireArguments().getString("mealAmount")!!
             UUID = requireArguments().getString("UUID")!!
-        } else{
+        } else {
             mealName = "null"
         }
     }
@@ -42,13 +43,27 @@ class InputMealFragment : Fragment() {
     ): View {
         app = activity?.application as MyApplication
         _binding = FragmentInputMealBinding.inflate(inflater, container, false)
+
+        var allfooods: MutableList<String> = mutableListOf()
+        var tmpName= "None"
+        for (food: Food in app.dataFoods.listOfFoods) {
+
+            if (tmpName.toString() != food.name.toString()){
+                allfooods.add(food.name)
+            }
+            tmpName = food.name
+        }
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, allfooods)
+        binding.foodsTr.setAdapter(arrayAdapter)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.title = "Meal tracker"
-        if(mealName != "null"){
+        if (mealName != "null") {
+            //DO NOT SHOW
+            binding.textInputLayout.visibility = View.GONE
             // Edit
             binding.addFoodName.setText(mealName)
             binding.addFoodCalories.setText(mealCalories)
@@ -59,20 +74,39 @@ class InputMealFragment : Fragment() {
                     try {
                         val builder = android.app.AlertDialog.Builder(context)
                         builder.setTitle("Update")
-                        builder.setMessage("Are you sure you want to update \n$mealName($mealCalories calories, $mealAmount grams) to \n" +
-                                "${binding.addFoodName.text.toString()}(${binding.addFoodCalories.text.toString()} calories, ${binding.addWeight.text.toString()} grams)")
+                        builder.setMessage(
+                            "Are you sure you want to update \n$mealName($mealCalories calories, $mealAmount grams) to \n" +
+                                    "${binding.addFoodName.text.toString()}(${binding.addFoodCalories.text.toString()} calories, ${binding.addWeight.text.toString()} grams)"
+                        )
                         builder.setIcon(android.R.drawable.ic_menu_edit)
-                        builder.setPositiveButton("Yes"){dialogInterface, which -> //performing positive action
-                            app.updateFood(UUID, binding.addFoodCalories.text.toString().toInt(), binding.addWeight.text.toString().toInt(), binding.addFoodName.text.toString())
+                        builder.setPositiveButton("Yes") { dialogInterface, which -> //performing positive action
+                            app.updateFood(
+                                UUID,
+                                binding.addFoodCalories.text.toString().toInt(),
+                                binding.addWeight.text.toString().toInt(),
+                                binding.addFoodName.text.toString()
+                            )
                             activity?.onBackPressed()
                             app.saveFoodToFile()
-                            Snackbar.make(view,getString(R.string.meal_edited), Snackbar.LENGTH_SHORT).show()
+                            Snackbar.make(
+                                view,
+                                getString(R.string.meal_edited),
+                                Snackbar.LENGTH_SHORT
+                            ).show()
                         }
-                        builder.setNeutralButton("Cancel"){dialogInterface , which -> //performing cancel action
-                            Snackbar.make(view,getString(R.string.cancelled), Snackbar.LENGTH_SHORT).show()
+                        builder.setNeutralButton("Cancel") { dialogInterface, which -> //performing cancel action
+                            Snackbar.make(
+                                view,
+                                getString(R.string.cancelled),
+                                Snackbar.LENGTH_SHORT
+                            ).show()
                         }
-                        builder.setNegativeButton("No"){dialogInterface, which -> //performing negative action
-                            Snackbar.make(view,getString(R.string.cancelled), Snackbar.LENGTH_SHORT).show()
+                        builder.setNegativeButton("No") { dialogInterface, which -> //performing negative action
+                            Snackbar.make(
+                                view,
+                                getString(R.string.cancelled),
+                                Snackbar.LENGTH_SHORT
+                            ).show()
                         }
 
                         val alertDialog: android.app.AlertDialog = builder.create()
@@ -84,12 +118,12 @@ class InputMealFragment : Fragment() {
                         Log.e(ContentValues.TAG, e.toString())
                     }
                 } else {
-                    Snackbar.make(view, getString(R.string.invalid_data), Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(view, getString(R.string.invalid_data), Snackbar.LENGTH_SHORT)
+                        .show()
                 }
             }
-        }
-        else
-        {
+        } else {
+            //TODO debug oz. popravi dodajanje tako da se meali nena ponavljajo
             binding.addMealBtn.setOnClickListener {
                 if (isDataValid()) {
                     try {
@@ -104,15 +138,42 @@ class InputMealFragment : Fragment() {
                         binding.addFoodCalories.setText("")
                         binding.addWeight.setText("")
                         app.saveFoodToFile()
-                        Snackbar.make(view,getString(R.string.meal_added), Snackbar.LENGTH_SHORT).show()
+                        Snackbar.make(view, getString(R.string.meal_added), Snackbar.LENGTH_SHORT)
+                            .show()
                         //println("Novo dodan element ${app.dataFoods}")
+
+                        //na novo nastavim adapter
+                        var allfooods: MutableList<String> = mutableListOf()
+                        var tmpName= "None"
+                        for (food: Food in app.dataFoods.listOfFoods) {
+
+                            if (tmpName.toString() != food.name.toString()){
+                                allfooods.add(food.name)
+                            }
+                            tmpName = food.name
+                        }
+                        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, allfooods)
+                        binding.foodsTr.setAdapter(arrayAdapter)
 
                     } catch (e: Exception) {
                         Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
                         Log.e(ContentValues.TAG, e.toString())
                     }
                 } else {
-                    Snackbar.make(view, getString(R.string.invalid_data), Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(view, getString(R.string.invalid_data), Snackbar.LENGTH_LONG)
+                        .show()
+                }
+            }
+            binding.foodsTr.setOnItemClickListener { parent, view, position, id ->
+                val name = binding.foodsTr.text.toString()
+                for (food: Food in app.dataFoods.listOfFoods) {
+                    if (food.name == name) {
+                        val cal = food.cal
+                        val amount = food.amount
+                        binding.addFoodCalories.setText(cal.toString())
+                        binding.addFoodName.setText(name.toString())
+                        binding.addWeight.setText(amount.toString())
+                    }
                 }
             }
         }

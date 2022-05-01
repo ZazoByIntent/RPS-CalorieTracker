@@ -72,6 +72,8 @@
     <string name="deleted">Element deleted</string>
     <string name="dark_mode_no">Dark mode disabled</string>
     <string name="dark_mode_yes">Dark mode enabled</string>
+    <string name="drop_item">drop_item</string>
+    <string name="foods">FOODS</string>
 
     <!-- END: snackbar_prompts -->
 
