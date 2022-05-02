@@ -77,4 +77,9 @@
 
     <!-- END: snackbar_prompts -->
 
+    <!-- BEGINNING: notifications -->
+    <string name="notifications_doing_great">You\'re doing great!</string>
+    <string name="notifications_header">A reminder from CalorieTracker</string>
+    <!-- END: notifications -->
+
 </resources>
