@@ -25,6 +25,8 @@ class MyApplication : Application() {
     private lateinit var gsonActivity: Gson
     private lateinit var fileActivity: File
     private lateinit var sharedPref: SharedPreferences
+    var calorieGoal = 0
+    var caloriesBurnedGoal = 0
 
 
     lateinit var dataActivity: ListOfActivities
@@ -50,8 +52,22 @@ class MyApplication : Application() {
         initFoodData()
         initActivityData()
         initShared()
+        getGoals()
         if(!containsID()) {
             saveID(UUID.randomUUID().toString().replace("-", ""))
+        }
+    }
+
+    private fun getGoals() {
+        calorieGoal = sharedPref.getInt("intake", 0)
+        caloriesBurnedGoal = sharedPref.getInt("burned", 0)
+    }
+
+    fun saveGoals(calorieIntake: Int, caloriesBurned: Int) {
+        with(sharedPref.edit()){
+            putInt("intake", calorieIntake)
+            putInt("burned", caloriesBurned)
+            apply()
         }
     }
 

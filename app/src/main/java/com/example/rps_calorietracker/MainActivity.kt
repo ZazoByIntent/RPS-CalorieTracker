@@ -78,7 +78,25 @@ class MainActivity : AppCompatActivity() {
 
     fun getSuggestion() : String
     {
-        // Tukaj se doda generiranje custom notifikacij (Priprava priporočil)
+        var caloriesBurned = 0
+        for(activity in app.dataActivity.list)
+            caloriesBurned += activity.burnedCalories.toInt()
+        var calorieIntake = 0
+        for(meal in app.dataFoods.listOfFoods)
+            calorieIntake += meal.cal
+        val suggestionData = calorieIntake - caloriesBurned
+
+        // Tukaj pride nabor priporocil, odzivanje na trenutno stanje:
+
+        if(suggestionData > app.calorieGoal)
+        {
+            // TODO dodaj priporocila
+        } else if (caloriesBurned < app.caloriesBurnedGoal)
+        {
+            // Primer:
+            return "Manjka vam se " + (app.caloriesBurnedGoal - caloriesBurned).toString()
+        }
+
         return getString(R.string.notifications_doing_great)
     }
 

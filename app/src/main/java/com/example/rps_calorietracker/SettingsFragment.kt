@@ -28,8 +28,16 @@ class SettingsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onPause() {
+        super.onPause()
+        app.saveGoals(binding.addMealGoal.text.toString().toInt(), binding.addActivityGoal.text.toString().toInt())
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         (activity as AppCompatActivity).supportActionBar?.title = "Settings"
+
+        binding.addActivityGoal.setText(app.caloriesBurnedGoal.toString())
+        binding.addMealGoal.setText(app.caloriesBurnedGoal.toString())
 
         var DarkMode = false
         val nightModeFlags = view.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
