@@ -25,15 +25,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.1" />
 
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_mid_vertical_8percent"
+        android:id="@+id/guideline_mid_vertical_10percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08" />
+        app:layout_constraintGuide_percent="0.10" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_mid_vertical_15percent"
@@ -57,13 +57,15 @@
 -->
     <TextView
         android:id="@+id/fragment_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         style="@style/Textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:text="@string/fragment_input_activity_description"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_mid_vertical_15percent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toTopOf="@+id/guideline_mid_vertical_8percent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_mid_vertical_10percent" />
 
     <TextView
         android:id="@+id/enter_activity_text"
@@ -72,8 +74,7 @@
         android:layout_marginTop="20dp"
         style="@style/Textview"
         android:text="@string/fragment_input_activity_addActivity"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
+        app:layout_constraintStart_toEndOf="@+id/guideline_vertical_middle"
         app:layout_constraintTop_toBottomOf="@+id/fragment_desc" />
 
     <EditText
@@ -92,8 +93,7 @@
         style="@style/Textview"
         android:text="@string/fragment_input_activity_addCalories"
         android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
+        app:layout_constraintStart_toEndOf="@+id/guideline_vertical_middle"
         app:layout_constraintTop_toBottomOf="@+id/addActivity" />
 
     <EditText
@@ -112,8 +112,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/fragment_input_activity_addActivityBtn"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
+        app:layout_constraintStart_toEndOf="@+id/guideline_vertical_middle"
         app:layout_constraintTop_toBottomOf="@+id/addActivityCalories" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

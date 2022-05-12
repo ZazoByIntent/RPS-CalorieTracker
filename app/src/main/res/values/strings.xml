@@ -1,9 +1,9 @@
 <resources>
     <!-- BEGINNING: fragment_main -->
-    <string name="app_name">RPS-CalorieTracker</string>
+    <string name="app_name" translatable="false">Calorie Tracker</string>
     <string name="add_meal">Add meal</string>
     <string name="add_activity">Add activity</string>
-    <string name="swap_rv">Change recycleview</string>
+    <string name="swap_rv">Change list</string>
     <string name="about">About</string>
     <string name="settings">Settings</string>
     <string name="fragment_main_meal_rv">Foods: </string>
@@ -26,30 +26,33 @@
     <string name="fragment_input_meal_addWeight">Food weight:</string>
     <string name="fragment_input_meal_addMealBtn">Add</string>
     <string name="fragment_input_meal_editMealBtn">Edit</string>
-    <string name="fragment_input_meal_description">Add new food, amount of calories and food weight.</string>
-
+    <string name="fragment_input_meal_description">Select already noted meal in your list or add new meal, it\'s amount of calories and food weight.</string>
+    <string name="input_foods_from_rv">CURRENT RECORDED MEALS</string>
     <!-- END: fragment_meal_meal -->
-    <string name="card_view_name">Name</string>
-    <string name="card_view_cal">Calories</string>
-    <string name="card_view_amount">Amount</string>
+
 
     <!-- BEGINNING: fragment_about -->
     <string name="fragment_about_title">About</string>
     <string name="fragment_about_add_name">Name:</string>
-    <string name="fragment_about_name">Calorie tracker</string>
+    <string name="fragment_about_name" translatable="false">Calorie tracker</string>
     <string name="fragment_about_add_description">Description:</string>
     <string name="fragment_about_description">Calorie tracker is your personal diary to help you reach your goals in weight gain or weight loss.\nTrack your daily food intake and your daily workout, so you know how much of each you still need, to reach your set goals.\nMake reminders and become the very best version of yourself you have always wanted to be.</string>
     <string name="fragment_about_add_version">Version:</string>
-    <string name="fragment_about_version">Alpha</string>
+    <string name="fragment_about_version" translatable="false">Alpha</string>
     <string name="fragment_about_add_contributors">Developed by:</string>
-    <string name="fragment_about_contributors">Aljaž Hafner\nJernej Belcl\nTim Lašič\nGašper Zlodej</string>
-    <string name="fragment_about_add_UUID">UUID:</string>
-    <string name="fragment_about_UUID">UUID</string>
+    <string name="fragment_about_contributors" translatable="false">Aljaž Hafner\nJernej Belcl\nTim Lašič\nGašper Zlodej</string>
+    <string name="fragment_about_add_UUID" translatable="false">UUID:</string>
+    <string name="fragment_about_UUID" translatable="false">UUID</string>
     <!-- END: fragment_about -->
 
     <!-- BEGINNING: card_view -->
     <string name="card_view_addAmount">Portion weight:</string>
     <string name="card_view_addCalories">Calorie intake:</string>
+
+    <!-- unknown strings -->
+    <string name="card_view_name">Name</string>
+    <string name="card_view_cal">Calories</string>
+    <string name="card_view_amount">Amount</string>
     <!-- END: card_view -->
 
     <!-- BEGINNING: card_view_activity -->
@@ -72,9 +75,7 @@
     <string name="deleted">Element deleted</string>
     <string name="dark_mode_no">Dark mode disabled</string>
     <string name="dark_mode_yes">Dark mode enabled</string>
-    <string name="drop_item">drop_item</string>
-    <string name="foods">FOODS</string>
-
+    <string name="drop_item" translatable="false">drop_item</string>
     <!-- END: snackbar_prompts -->
 
     <!-- BEGINNING: notifications -->

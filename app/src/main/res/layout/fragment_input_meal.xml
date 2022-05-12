@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".InputMealFragment">
 
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_vertical_left"
         android:layout_width="wrap_content"
@@ -26,15 +25,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.1" />
 
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_mid_vertical_8percent"
+        android:id="@+id/guideline_mid_vertical_10percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08" />
+        app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_mid_vertical_15percent"
@@ -58,13 +57,37 @@
 -->
     <TextView
         android:id="@+id/fragment_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_input_meal_description"
         style="@style/Textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:text="@string/fragment_input_meal_description"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_mid_vertical_15percent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toTopOf="@+id/guideline_mid_vertical_8percent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline_mid_vertical_10percent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_desc">
+
+        <AutoCompleteTextView
+            android:id="@+id/foods_tr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textAllCaps="true"
+            style="@style/Textview"
+            android:inputType="none"
+            android:text="@string/input_foods_from_rv" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/enter_food_text"
@@ -73,9 +96,8 @@
         android:layout_marginTop="20dp"
         style="@style/Textview"
         android:text="@string/fragment_input_meal_addFood"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_desc" />
+        app:layout_constraintStart_toEndOf="@+id/guideline_vertical_middle"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <EditText
         android:id="@+id/addFoodName"
@@ -93,8 +115,7 @@
         android:text="@string/fragment_input_meal_addCalories"
         android:layout_marginTop="25dp"
         style="@style/Textview"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
+        app:layout_constraintStart_toEndOf="@+id/guideline_vertical_middle"
         app:layout_constraintTop_toBottomOf="@+id/addFoodName" />
 
     <EditText
@@ -115,8 +136,7 @@
         android:text="@string/fragment_input_meal_addWeight"
         style="@style/Textview"
         android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
+        app:layout_constraintStart_toEndOf="@+id/guideline_vertical_middle"
         app:layout_constraintTop_toBottomOf="@+id/addFoodCalories" />
 
     <EditText
@@ -135,28 +155,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/fragment_input_meal_addMealBtn"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_middle"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
+        app:layout_constraintStart_toEndOf="@+id/guideline_vertical_middle"
         app:layout_constraintTop_toBottomOf="@+id/addWeight" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toBottomOf="@+id/addMealBtn">
-
-        <AutoCompleteTextView
-            android:id="@+id/foods_tr"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:inputType="none"
-            android:text="@string/foods" />
-    </com.google.android.material.textfield.TextInputLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
