@@ -24,7 +24,7 @@
     <string name="fragment_about_title">Infromacije o aplikaciji</string>
     <string name="fragment_about_add_name">Ime:</string>
     <string name="fragment_about_add_description">Opis:</string>
-    <string name="fragment_about_description">"Calorie tracker je vaš osebni dnevnik, s katerim si pomagate doseči vaše osebne cilje o pridobivanju ali izgubljanju telesne teže. \nSledite vašim dnevnim ciljem o številu zaužitih in pokurjenih kalorij, tako da izveste koliko posameznega še vam majnka do dnevnega cilja. \nUstvarite si opomnike in postanite takšni kot ste zmeraj želeli biti. "</string>
+    <string name="fragment_about_description">"Calorie tracker je vaš osebni dnevnik, s katerim si pomagate doseči vaše osebne cilje o pridobivanju ali izgubljanju telesne teže.\nSledite vašim dnevnim ciljem o številu zaužitih in pokurjenih kalorij, tako da izveste koliko posameznega še vam majnka do dnevnega cilja. \nUstvarite si opomnike in postanite takšni kot ste zmeraj želeli biti. "</string>
     <string name="fragment_about_add_version">Različica:</string>
     <string name="fragment_about_add_contributors">Razvijalci</string>
     <string name="card_view_addAmount">Teža obroka:</string>
