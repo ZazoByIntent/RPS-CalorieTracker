@@ -45,7 +45,10 @@ class MainActivity : AppCompatActivity() {
             applicationContext,
             0,
             intent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+           // PendingIntent.FLAG_UPDATE_CURRENT,
+           // PendingIntent.FLAG_ONE_SHOT
+            // PendingIntent.FLAG_IMMUTABLE,
+            PendingIntent.FLAG_MUTABLE  //Niam blage veze,samo vem da mi edino toti fflag delo
         )
 
         sendBroadcast(intent)
@@ -65,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             applicationContext,
             0,
             intent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            PendingIntent.FLAG_MUTABLE
         )
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
         alarmManager.setRepeating(

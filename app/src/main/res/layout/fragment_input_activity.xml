@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.15" />
-<!--
+    <!--
     <TextView
         android:id="@+id/fragment_title"
         android:layout_width="wrap_content"
@@ -60,39 +60,57 @@
         style="@style/Textview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:text="@string/fragment_input_activity_description"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/guideline_mid_vertical_15percent"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
         app:layout_constraintTop_toTopOf="@+id/guideline_mid_vertical_10percent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline_mid_vertical_15percent">
+
+        <AutoCompleteTextView
+            android:id="@+id/activitytr"
+            style="@style/Textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="none"
+            android:text="@string/input_foods_from_rv"
+            android:textAllCaps="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
         android:id="@+id/enter_activity_text"
+        style="@style/Textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        style="@style/Textview"
         android:text="@string/fragment_input_activity_addActivity"
-        app:layout_constraintStart_toEndOf="@+id/guideline_vertical_middle"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_desc" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_middle"
+        app:layout_constraintTop_toTopOf="@+id/addActivity" />
 
     <EditText
         android:id="@+id/addActivity"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_width="351dp"
+        android:layout_height="77dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
-        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
-        app:layout_constraintTop_toBottomOf="@+id/enter_activity_text" />
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_middle"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
     <TextView
         android:id="@+id/enter_calories"
+        style="@style/Textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/Textview"
-        android:text="@string/fragment_input_activity_addCalories"
         android:layout_marginTop="25dp"
+        android:text="@string/fragment_input_activity_addCalories"
         app:layout_constraintStart_toEndOf="@+id/guideline_vertical_middle"
         app:layout_constraintTop_toBottomOf="@+id/addActivity" />
 
@@ -100,8 +118,8 @@
         android:id="@+id/addActivityCalories"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:inputType="number"
         android:layout_marginTop="20dp"
+        android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_left"
         app:layout_constraintTop_toBottomOf="@+id/enter_calories" />

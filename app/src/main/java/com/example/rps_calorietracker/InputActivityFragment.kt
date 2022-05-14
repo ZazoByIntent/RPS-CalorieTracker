@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mylib.Activity
 import com.example.rps_calorietracker.databinding.FragmentInputActivityBinding
 import com.google.android.material.snackbar.Snackbar
+import android.widget.ArrayAdapter
 
 
 class InputActivityFragment : Fragment() {
@@ -40,6 +41,17 @@ class InputActivityFragment : Fragment() {
     ): View {
         app = activity?.application as MyApplication
         _binding = FragmentInputActivityBinding.inflate(inflater, container, false)
+        var allActivites: MutableList<String> = mutableListOf()
+        var tmpName= "None"
+        for (activity: Activity in app.dataActivity.list) {
+
+            if (tmpName.toString() != activity.name.toString()){
+                allActivites.add(activity.name)
+            }
+            tmpName = activity.name
+        }
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, allActivites)
+        binding.activitytr.setAdapter(arrayAdapter)
         return binding.root
     }
 
@@ -47,6 +59,8 @@ class InputActivityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity).supportActionBar?.title = "Activity tracker"
         if(activityName != "null"){
+            //DO NOT SHOW
+            binding.textInputLayout.visibility = View.GONE
             // Edit
             binding.addActivity.setText(activityName)
             binding.addActivityCalories.setText(activityCal)
@@ -96,11 +110,39 @@ class InputActivityFragment : Fragment() {
                     binding.addActivityCalories.setText("")
                     Snackbar.make(view,getString(R.string.activity_added), Snackbar.LENGTH_SHORT).show()
 
+
+                    //na novo nastavim adapter
+                    var allActivities: MutableList<String> = mutableListOf()
+                    var tmpName= "None"
+                    for (activity: Activity in app.dataActivity.list) {
+
+                        if (tmpName.toString() != activity.name.toString()){
+                            allActivities.add(activity.name)
+                        }
+                        tmpName = activity.name
+                    }
+                    val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, allActivities)
+                    binding.activitytr.setAdapter(arrayAdapter)
+
+
                 } catch (e: Exception) {
                     Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
                     Log.e(ContentValues.TAG, e.toString())
                 }
                 println("Novo dodan element ${app.dataActivity}")
+            }
+
+           binding.activitytr.setOnItemClickListener { parent, view, position, id ->
+                val name = binding.activitytr.text.toString()
+               println(name);
+                for (activity: Activity in app.dataActivity.list) {
+                    if (activity.name == name) {
+                        println("Aktivnost:${activity.toString()}");
+
+                        binding.addActivity.setText(activity.name.toString())
+                        binding.addActivityCalories.setText(activity.burnedCalories.toString())
+                    }
+                }
             }
         }
     }
