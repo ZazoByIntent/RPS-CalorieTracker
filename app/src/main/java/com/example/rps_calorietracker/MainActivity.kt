@@ -99,7 +99,10 @@ class MainActivity : AppCompatActivity() {
         }else if(suggestionData > app.calorieGoal)
         {
             // TODO dodaj priporocila
-            return "Priporocamo vsaj kratek sprehod, saj Imate: " + (suggestionData - app.calorieGoal).toString()+ "več kalorij od zeljenih"
+            if((suggestionData - app.calorieGoal)<=200) return "Priporocamo vsaj kratek sprehod, saj Imate: " + (suggestionData - app.calorieGoal).toString()+ "več kalorij za porabiti od zeljenih"
+            else if((suggestionData - app.calorieGoal)<=400) return "Priporocamo igro tenisa/kosarke/nogometa, saj Imate: " + (suggestionData - app.calorieGoal).toString()+ "več kalorij za porabiti od zeljenih"
+            else if((suggestionData - app.calorieGoal)<=700) return "Priporocamo Fittness, saj Imate: " + (suggestionData - app.calorieGoal).toString()+ "več kalorij za porabiti od zeljenih"
+            else return "Priporocamo daljšo aktivnost, saj Imate kar: " + (suggestionData - app.calorieGoal).toString()+ "več kalorij za porabiti od zeljenih"
         }
 
         return getString(R.string.notifications_doing_great)

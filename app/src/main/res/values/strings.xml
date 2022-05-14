@@ -81,6 +81,7 @@
     <!-- BEGINNING: notifications -->
     <string name="notifications_doing_great">You\'re doing great!</string>
     <string name="notifications_header">A reminder from CalorieTracker</string>
+    <string name="input_activites_from_rv" translatable="false">CURRENT RECORDED ACTIVITES</string>
     <!-- END: notifications -->
 
 </resources>
