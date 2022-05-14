@@ -103,6 +103,7 @@ class MainFragment : Fragment() {
                     builder.setPositiveButton("Yes"){dialogInterface, which -> //performing positive action
                         Toast.makeText(context,"Deleted",Toast.LENGTH_LONG).show()
                         app.DeleteActivity(position)
+                        app.saveActivityToFile()
                         binding.rvActivity.adapter?.notifyItemRemoved(position)
                         if (p0 != null) {
                             Snackbar.make(p0,getString(R.string.deleted), Snackbar.LENGTH_LONG).show()

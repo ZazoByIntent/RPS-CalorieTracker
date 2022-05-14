@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
 
     fun getSuggestion() : String
     {
+        app.caloriesBurnedGoal = 500;
         var caloriesBurned = 0
         for(activity in app.dataActivity.list)
             caloriesBurned += activity.burnedCalories.toInt()
@@ -90,14 +91,15 @@ class MainActivity : AppCompatActivity() {
         val suggestionData = calorieIntake - caloriesBurned
 
         // Tukaj pride nabor priporocil, odzivanje na trenutno stanje:
-
-        if(suggestionData > app.calorieGoal)
-        {
-            // TODO dodaj priporocila
-        } else if (caloriesBurned < app.caloriesBurnedGoal)
+        println(" Priporocljivo: $suggestionData Zauzito: $calorieIntake Skurjeno: $caloriesBurned AppCalories: ${app.caloriesBurnedGoal}" )
+        if (caloriesBurned < app.caloriesBurnedGoal)
         {
             // Primer:
-            return "Manjka vam se " + (app.caloriesBurnedGoal - caloriesBurned).toString()
+            return "Manjka vam se " + (app.caloriesBurnedGoal - caloriesBurned).toString() + "kalorij do minimalnega dnevnega cilja pokurjenih kalorij"
+        }else if(suggestionData > app.calorieGoal)
+        {
+            // TODO dodaj priporocila
+            return "Priporocamo vsaj kratek sprehod, saj Imate: " + (suggestionData - app.calorieGoal).toString()+ "več kalorij od zeljenih"
         }
 
         return getString(R.string.notifications_doing_great)
