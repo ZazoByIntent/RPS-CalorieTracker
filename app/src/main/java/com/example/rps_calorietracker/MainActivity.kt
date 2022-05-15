@@ -14,7 +14,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    lateinit var app:MyApplication
+    lateinit var app: MyApplication
     val br: BroadcastReceiver = MyNotificationReceiver()
 
     companion object {
@@ -38,15 +38,15 @@ class MainActivity : AppCompatActivity() {
         myAlarm()
     }
 
-    fun sendNotification(){
+    fun sendNotification() {
         val intent = Intent(applicationContext, MyNotificationReceiver::class.java)
         intent.putExtra("Suggestion", getSuggestion())
         val pendingIntent = PendingIntent.getBroadcast(
             applicationContext,
             0,
             intent,
-           // PendingIntent.FLAG_UPDATE_CURRENT,
-           // PendingIntent.FLAG_ONE_SHOT
+            // PendingIntent.FLAG_UPDATE_CURRENT,
+            // PendingIntent.FLAG_ONE_SHOT
             // PendingIntent.FLAG_IMMUTABLE,
             PendingIntent.FLAG_MUTABLE  //Niam blage veze,samo vem da mi edino toti fflag delo
         )
@@ -79,30 +79,46 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    fun getSuggestion() : String
-    {
+    fun getSuggestion(): String {
         app.caloriesBurnedGoal = 500;
+        app.calorieGoal = 2000;
         var caloriesBurned = 0
-        for(activity in app.dataActivity.list)
+        for (activity in app.dataActivity.list)
             caloriesBurned += activity.burnedCalories.toInt()
         var calorieIntake = 0
-        for(meal in app.dataFoods.listOfFoods)
+        for (meal in app.dataFoods.listOfFoods)
             calorieIntake += meal.cal
         val suggestionData = calorieIntake - caloriesBurned
 
         // Tukaj pride nabor priporocil, odzivanje na trenutno stanje:
-        println(" Priporocljivo: $suggestionData Zauzito: $calorieIntake Skurjeno: $caloriesBurned AppCalories: ${app.caloriesBurnedGoal}" )
-        if (caloriesBurned < app.caloriesBurnedGoal)
-        {
+        println(" Priporocljivo: $suggestionData Zauzito: $calorieIntake Skurjeno: $caloriesBurned AppCalories: ${app.caloriesBurnedGoal} CalorieIntakeGoal: ${app.calorieGoal}")
+
+        if (calorieIntake < app.calorieGoal && caloriesBurned < app.caloriesBurnedGoal) {
+            //println(" Priporocljivo:Goal: ${app.calorieGoal} +1" ) preverjanje
+            return "Manjka vam se " + (app.caloriesBurnedGoal - caloriesBurned).toString() + "kalorij do minimalnega dnevnega cilja pokurjenih kalorij" +
+                    "manjka vam tudi" + (app.calorieGoal - calorieIntake).toString() + " zaužitih kalorij"
+        } else if (caloriesBurned < app.caloriesBurnedGoal) {
             // Primer:
+            //println(" Priporocljivo:Goal: ${app.calorieGoal} +2" )
             return "Manjka vam se " + (app.caloriesBurnedGoal - caloriesBurned).toString() + "kalorij do minimalnega dnevnega cilja pokurjenih kalorij"
-        }else if(suggestionData > app.calorieGoal)
-        {
+        } else if (calorieIntake < app.calorieGoal) {
+            //println(" Priporocljivo:Goal: ${app.calorieGoal} +3" )
+                if (app.calorieGoal - calorieIntake >= 1500){
+                    return "Manjka vam se " + (app.calorieGoal - calorieIntake).toString() + " zaužitih kalorij. Priporačamo vam zdrav večji obrok: okoli 650 do 800 kalorij(Kosilo ali večerja)."
+                }else if (app.calorieGoal - calorieIntake >= 1250){
+                    return "Manjka vam se " + (app.calorieGoal - calorieIntake).toString() + " zaužitih kalorij. Priporačamo vam zdrav srednji obrok: okoli 450 do 650 kalorij(Malica)."
+                }else if (app.calorieGoal - calorieIntake >= 1000){
+                    return "Manjka vam se " + (app.calorieGoal - calorieIntake).toString() + " zaužitih kalorij. Priporačamo vam zdrav manjši obrok: okoli 400 do 500 kalorij(Manjši obrok ali zajtrk)."
+                }else{
+                    return "Manjka vam se " + (app.calorieGoal - calorieIntake).toString() + " zaužitih kalorij. Priporačamo vam več majhnih obrokov ki se gibljejo med 100 do 300 kalorij(Sadje, hrana z veliko vlaken(fibers))."
+                }
+
+        } else if (suggestionData > app.calorieGoal) {
             // TODO dodaj priporocila
-            if((suggestionData - app.calorieGoal)<=200) return "Priporocamo vsaj kratek sprehod, saj Imate: " + (suggestionData - app.calorieGoal).toString()+ "več kalorij za porabiti od zeljenih"
-            else if((suggestionData - app.calorieGoal)<=400) return "Priporocamo igro tenisa/kosarke/nogometa, saj Imate: " + (suggestionData - app.calorieGoal).toString()+ "več kalorij za porabiti od zeljenih"
-            else if((suggestionData - app.calorieGoal)<=700) return "Priporocamo Fittness, saj Imate: " + (suggestionData - app.calorieGoal).toString()+ "več kalorij za porabiti od zeljenih"
-            else return "Priporocamo daljšo aktivnost, saj Imate kar: " + (suggestionData - app.calorieGoal).toString()+ "več kalorij za porabiti od zeljenih"
+            if ((suggestionData - app.calorieGoal) <= 200) return "Priporocamo vsaj kratek sprehod, saj Imate: " + (suggestionData - app.calorieGoal).toString() + "več kalorij za porabiti od zeljenih"
+            else if ((suggestionData - app.calorieGoal) <= 400) return "Priporocamo igro tenisa/kosarke/nogometa, saj Imate: " + (suggestionData - app.calorieGoal).toString() + "več kalorij za porabiti od zeljenih"
+            else if ((suggestionData - app.calorieGoal) <= 700) return "Priporocamo Fittness, saj Imate: " + (suggestionData - app.calorieGoal).toString() + "več kalorij za porabiti od zeljenih"
+            else return "Priporocamo daljšo aktivnost, saj Imate kar: " + (suggestionData - app.calorieGoal).toString() + "več kalorij za porabiti od zeljenih"
         }
 
         return getString(R.string.notifications_doing_great)
