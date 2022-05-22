@@ -47,4 +47,6 @@
     <string name="dark_mode_yes">Nočni način omogočen</string>
     <string name="notifications_header">CalorieTracker opomnik</string>
     <string name="notifications_doing_great">Ste na pravi poti do vaših ciljev</string>
+    <string name="input_activites_from_rv" translatable="false">TRENUTNO ZABELEŽENE AKTIVNOSTI</string>
+    <string name="activity_update">Posodobi</string>
 </resources>
