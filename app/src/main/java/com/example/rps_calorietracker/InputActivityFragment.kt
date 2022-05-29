@@ -1,9 +1,7 @@
 package com.example.rps_calorietracker
 
-
-import android.content.ContentValues
 import android.os.Bundle
-import android.util.Log
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +12,6 @@ import com.example.mylib.Activity
 import com.example.rps_calorietracker.databinding.FragmentInputActivityBinding
 import com.google.android.material.snackbar.Snackbar
 import android.widget.ArrayAdapter
-
 
 class InputActivityFragment : Fragment() {
     private var _binding: FragmentInputActivityBinding? = null
@@ -45,7 +42,7 @@ class InputActivityFragment : Fragment() {
         var tmpName= "None"
         for (activity: Activity in app.dataActivity.list) {
 
-            if (tmpName.toString() != activity.name.toString()){
+            if (tmpName != activity.name){
                 allActivites.add(activity.name)
             }
             tmpName = activity.name
@@ -66,70 +63,83 @@ class InputActivityFragment : Fragment() {
             binding.addActivityCalories.setText(activityCal)
             binding.addActivityBtn.text = getString(R.string.fragment_input_activity_editActivityBtn)
             binding.addActivityBtn.setOnClickListener {
-                try {
-                    /*app.updateActivity(UUID, binding.addActivityCalories.text.toString().toDouble(), binding.addActivity.text.toString())
-                    activity?.onBackPressed()
-                    app.saveActivityToFile()*/
-                    val builder = android.app.AlertDialog.Builder(context)
-                    builder.setTitle("Update")
-                    builder.setMessage("Are you sure you want to update \n${activityName}(burned calories: $activityCal) -> \n" +
-                            "${binding.addActivity.text}(burned calories: ${binding.addActivityCalories.text})")
-                    builder.setIcon(android.R.drawable.ic_menu_edit)
-                    builder.setPositiveButton("Yes"){dialogInterface, which -> //performing positive action
-                        app.updateActivity(UUID, binding.addActivityCalories.text.toString().toDouble(), binding.addActivity.text.toString())
-                        activity?.onBackPressed()
-                        app.saveActivityToFile()
-                        Snackbar.make(view,getString(R.string.activity_edited), Snackbar.LENGTH_SHORT).show()
-                    }
-                    builder.setNeutralButton("Cancel"){dialogInterface , which -> //performing cancel action
-                        Snackbar.make(view,getString(R.string.cancelled), Snackbar.LENGTH_SHORT).show()
-                    }
-                    builder.setNegativeButton("No"){dialogInterface, which -> //performing negative action
-                        Snackbar.make(view,getString(R.string.cancelled), Snackbar.LENGTH_SHORT).show()
-                    }
+                if(isDataValid()){
+                    try {
+                        val builder = android.app.AlertDialog.Builder(context)
+                        builder.setTitle("Update")
+                        builder.setMessage("Are you sure you want to update \n${activityName}(burned calories: $activityCal) -> \n" +
+                                "${binding.addActivity.text}(burned calories: ${binding.addActivityCalories.text})")
+                        builder.setIcon(android.R.drawable.ic_menu_edit)
+                        builder.setPositiveButton("Yes"){dialogInterface, which -> //performing positive action
+                            app.updateActivity(UUID, binding.addActivityCalories.text.toString().toDouble(), binding.addActivity.text.toString())
+                            activity?.onBackPressed()
+                            app.saveActivityToFile()
+                            Snackbar.make(view,getString(R.string.activity_edited), Snackbar.LENGTH_SHORT).show()
+                        }
+                        builder.setNeutralButton("Cancel"){dialogInterface , which -> //performing cancel action
+                            Snackbar.make(view,getString(R.string.cancelled), Snackbar.LENGTH_SHORT).show()
+                        }
+                        builder.setNegativeButton("No"){dialogInterface, which -> //performing negative action
+                            Snackbar.make(view,getString(R.string.cancelled), Snackbar.LENGTH_SHORT).show()
+                        }
 
-                    val alertDialog: android.app.AlertDialog = builder.create()
-                    alertDialog.setCancelable(false)
-                    alertDialog.show()
-                } catch (e: Exception) {
-                    Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
-                    Log.e(ContentValues.TAG, e.toString())
+                        val alertDialog: android.app.AlertDialog = builder.create()
+                        alertDialog.setCancelable(false)
+                        alertDialog.show()
+                    } catch (e: Exception) {
+                        Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Snackbar.make(view, getString(R.string.invalid_data), Snackbar.LENGTH_SHORT)
+                        .show()
                 }
             }
         }
         else{
             binding.addActivityBtn.setOnClickListener {
-                try {
-                    app.dataActivity.list.add( Activity(
-                        binding.addActivity.text.toString(),
-                        binding.addActivityCalories.text.toString().toDouble()
-                    )
-                    )
-                    app.saveActivityToFile()
-                    binding.addActivity.setText("")
-                    binding.addActivityCalories.setText("")
-                    Snackbar.make(view,getString(R.string.activity_added), Snackbar.LENGTH_SHORT).show()
+                if (isDataValid()) {
+                    try {
+                        app.dataActivity.list.add(
+                            Activity(
+                                binding.addActivity.text.toString(),
+                                binding.addActivityCalories.text.toString().toDouble()
+                            )
+                        )
+                        println("Activity added, " + binding.addActivity.text.toString())
 
+                        app.saveActivityToFile()
+                        binding.addActivity.setText("")
+                        binding.addActivityCalories.setText("")
+                        Snackbar.make(
+                            view,
+                            getString(R.string.activity_added),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
 
-                    //na novo nastavim adapter
-                    var allActivities: MutableList<String> = mutableListOf()
-                    var tmpName= "None"
-                    for (activity: Activity in app.dataActivity.list) {
+                        //na novo nastavim adapter
+                        var allActivities: MutableList<String> = mutableListOf()
+                        var tmpName = "None"
+                        for (activity: Activity in app.dataActivity.list) {
 
-                        if (tmpName.toString() != activity.name.toString()){
-                            allActivities.add(activity.name)
+                            if (tmpName != activity.name) {
+                                allActivities.add(activity.name)
+                            }
+                            tmpName = activity.name
                         }
-                        tmpName = activity.name
+                        val arrayAdapter =
+                            ArrayAdapter(requireContext(), R.layout.dropdown_item, allActivities)
+                        binding.activitytr.setAdapter(arrayAdapter)
+
+
+                    } catch (e: Exception) {
+                        Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
                     }
-                    val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, allActivities)
-                    binding.activitytr.setAdapter(arrayAdapter)
-
-
-                } catch (e: Exception) {
-                    Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
-                    Log.e(ContentValues.TAG, e.toString())
+                    println("Novo dodan element ${app.dataActivity}")
                 }
-                println("Novo dodan element ${app.dataActivity}")
+                else {
+                    Snackbar.make(view, getString(R.string.invalid_data), Snackbar.LENGTH_LONG)
+                        .show()
+                }
             }
 
            binding.activitytr.setOnItemClickListener { parent, view, position, id ->
@@ -137,17 +147,31 @@ class InputActivityFragment : Fragment() {
                println(name);
                 for (activity: Activity in app.dataActivity.list) {
                     if (activity.name == name) {
-                        println("Aktivnost:${activity.toString()}");
+                        println("Aktivnost:${activity}");
 
-                        binding.addActivity.setText(activity.name.toString())
+                        binding.addActivity.setText(activity.name)
                         binding.addActivityCalories.setText(activity.burnedCalories.toString())
                     }
                 }
             }
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun isDataValid(): Boolean {
+        var ok = true
+        if (TextUtils.isEmpty(binding.addActivity.text.toString())) {
+            binding.addActivity.setError("set item")
+            ok = false
+        }
+        if (TextUtils.isEmpty(binding.addActivityCalories.text.toString())) {
+            binding.addActivityCalories.setError("set amount")
+            ok = false
+        }
+        return ok
     }
 }
