@@ -94,7 +94,7 @@ class MainFragment : Fragment() {
                     val builder = android.app.AlertDialog.Builder(context)
                     builder.setTitle("Delete")
                     builder.setMessage("${app.dataActivity.list[position]}")
-                    builder.setIcon(android.R.drawable.ic_dialog_alert)
+                    builder.setIcon(R.drawable.delete_icon)
                     builder.setPositiveButton("Yes"){dialogInterface, which -> //performing positive action
                         Toast.makeText(context,"Deleted",Toast.LENGTH_LONG).show()
                         app.DeleteActivity(position)

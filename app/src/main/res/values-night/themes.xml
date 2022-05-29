@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.RPSCalorieTracker" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.RPSCalorieTracker.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorDark</item>
         <item name="colorPrimaryVariant">@color/colorDarkVariant</item>
@@ -24,5 +24,8 @@
     </style>
     <style name="CardView_text">
         <item name="android:textColor">@color/themeDark</item>
+    </style>
+    <style name="CardView_backgroud">
+        <item name="android:background">@color/colorDark</item>
     </style>
 </resources>
