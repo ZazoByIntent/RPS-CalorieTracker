@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mylib.ListOfActivities
 
 
-class ActivityAdapter(private val data : ListOfActivities, private val onClickObject: ActivityAdapter.MyOnClick) : RecyclerView.Adapter<ActivityAdapter.ViewHolder>(){
+class ActivityAdapter(private val data : ListOfActivities, private val onClickObject: MyOnClick) : RecyclerView.Adapter<ActivityAdapter.ViewHolder>(){
 
     interface MyOnClick {
         fun onClick(p0: View?, position:Int)

@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.rps_calorietracker.databinding.FragmentInputMealBinding
 import com.google.android.material.snackbar.Snackbar
+import timber.log.Timber
 
 class InputMealFragment : Fragment() {
 
@@ -114,7 +115,7 @@ class InputMealFragment : Fragment() {
 
                     } catch (e: Exception) {
                         Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
-                        Log.e(ContentValues.TAG, e.toString())
+                        Timber.e(e.toString())
                     }
                 } else {
                     Snackbar.make(view, getString(R.string.invalid_data), Snackbar.LENGTH_SHORT)
@@ -156,7 +157,7 @@ class InputMealFragment : Fragment() {
 
                     } catch (e: Exception) {
                         Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
-                        Log.e(ContentValues.TAG, e.toString())
+                        Timber.e(e.toString())
                     }
                 } else {
                     Snackbar.make(view, getString(R.string.invalid_data), Snackbar.LENGTH_LONG)
