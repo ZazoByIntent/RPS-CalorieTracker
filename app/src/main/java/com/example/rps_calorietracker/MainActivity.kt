@@ -3,9 +3,7 @@ package com.example.rps_calorietracker
 import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.content.BroadcastReceiver
 import android.content.Intent
-import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -15,13 +13,12 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var app: MyApplication
-    val br: BroadcastReceiver = MyNotificationReceiver()
 
     companion object {
         const val CHANNEL_ID = "com.example.rps_calorietracker"
         private var notificationId = 0
         fun getNotificationUniqueID(): Int {
-            return notificationId++ // fix
+            return notificationId++
         }
     }
 
@@ -52,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         )
 
         sendBroadcast(intent)
-
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
@@ -62,15 +58,21 @@ class MainActivity : AppCompatActivity() {
         calendar.set(Calendar.MINUTE, 0)
         calendar.set(Calendar.SECOND, 0)
         if (calendar.getTime().compareTo(Date()) < 0) calendar.add(Calendar.DAY_OF_MONTH, 1)
+
+        // Enako kot zgoraj
         val intent = Intent(applicationContext, MyNotificationReceiver::class.java)
+        // Pridobi suggestion
         intent.putExtra("Suggestion", getSuggestion())
+
         val pendingIntent = PendingIntent.getBroadcast(
             applicationContext,
             0,
             intent,
             PendingIntent.FLAG_MUTABLE
         )
+
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+        // Prozi se vsak dan -> posiljamo pendingIntent
         alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP,
             calendar.getTimeInMillis(),
@@ -80,9 +82,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getSuggestion(): String {
-        app.caloriesBurnedGoal = 500;
-        app.calorieGoal = 2000;
         var caloriesBurned = 0
+
         for (activity in app.dataActivity.list)
             caloriesBurned += activity.burnedCalories.toInt()
         var calorieIntake = 0
@@ -94,15 +95,12 @@ class MainActivity : AppCompatActivity() {
         println(" Priporocljivo: $suggestionData Zauzito: $calorieIntake Skurjeno: $caloriesBurned AppCalories: ${app.caloriesBurnedGoal} CalorieIntakeGoal: ${app.calorieGoal}")
 
         if (calorieIntake < app.calorieGoal && caloriesBurned < app.caloriesBurnedGoal) {
-            //println(" Priporocljivo:Goal: ${app.calorieGoal} +1" ) preverjanje
             return "Manjka vam se " + (app.caloriesBurnedGoal - caloriesBurned).toString() + "kalorij do minimalnega dnevnega cilja pokurjenih kalorij" +
                     "manjka vam tudi" + (app.calorieGoal - calorieIntake).toString() + " zaužitih kalorij"
         } else if (caloriesBurned < app.caloriesBurnedGoal) {
             // Primer:
-            //println(" Priporocljivo:Goal: ${app.calorieGoal} +2" )
             return "Manjka vam se " + (app.caloriesBurnedGoal - caloriesBurned).toString() + "kalorij do minimalnega dnevnega cilja pokurjenih kalorij"
         } else if (calorieIntake < app.calorieGoal) {
-            //println(" Priporocljivo:Goal: ${app.calorieGoal} +3" )
                 if (app.calorieGoal - calorieIntake >= 1500){
                     return "Manjka vam se " + (app.calorieGoal - calorieIntake).toString() + " zaužitih kalorij. Priporačamo vam zdrav večji obrok: okoli 650 do 800 kalorij(Kosilo ali večerja)."
                 }else if (app.calorieGoal - calorieIntake >= 1250){
@@ -114,7 +112,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
         } else if (suggestionData > app.calorieGoal) {
-            // TODO dodaj priporocila
             if ((suggestionData - app.calorieGoal) <= 200) return "Priporocamo vsaj kratek sprehod, saj Imate: " + (suggestionData - app.calorieGoal).toString() + "več kalorij za porabiti od zeljenih"
             else if ((suggestionData - app.calorieGoal) <= 400) return "Priporocamo igro tenisa/kosarke/nogometa, saj Imate: " + (suggestionData - app.calorieGoal).toString() + "več kalorij za porabiti od zeljenih"
             else if ((suggestionData - app.calorieGoal) <= 700) return "Priporocamo Fittness, saj Imate: " + (suggestionData - app.calorieGoal).toString() + "več kalorij za porabiti od zeljenih"

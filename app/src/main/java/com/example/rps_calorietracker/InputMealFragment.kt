@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.rps_calorietracker.databinding.FragmentInputMealBinding
 import com.google.android.material.snackbar.Snackbar
 
-
 class InputMealFragment : Fragment() {
 
     private var _binding: FragmentInputMealBinding? = null
@@ -48,7 +47,7 @@ class InputMealFragment : Fragment() {
         var tmpName= "None"
         for (food: Food in app.dataFoods.listOfFoods) {
 
-            if (tmpName.toString() != food.name.toString()){
+            if (tmpName != food.name){
                 allfooods.add(food.name)
             }
             tmpName = food.name
@@ -134,20 +133,20 @@ class InputMealFragment : Fragment() {
                                 binding.addWeight.text.toString().toInt()
                             )
                         )
+                        println("Meal added, " + binding.addFoodName.text.toString())
                         binding.addFoodName.setText("")
                         binding.addFoodCalories.setText("")
                         binding.addWeight.setText("")
                         app.saveFoodToFile()
                         Snackbar.make(view, getString(R.string.meal_added), Snackbar.LENGTH_SHORT)
                             .show()
-                        //println("Novo dodan element ${app.dataFoods}")
 
                         //na novo nastavim adapter
                         var allfooods: MutableList<String> = mutableListOf()
                         var tmpName= "None"
                         for (food: Food in app.dataFoods.listOfFoods) {
 
-                            if (tmpName.toString() != food.name.toString()){
+                            if (tmpName != food.name){
                                 allfooods.add(food.name)
                             }
                             tmpName = food.name
@@ -171,7 +170,7 @@ class InputMealFragment : Fragment() {
                         val cal = food.cal
                         val amount = food.amount
                         binding.addFoodCalories.setText(cal.toString())
-                        binding.addFoodName.setText(name.toString())
+                        binding.addFoodName.setText(name)
                         binding.addWeight.setText(amount.toString())
                     }
                 }

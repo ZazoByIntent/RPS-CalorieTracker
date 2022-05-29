@@ -15,6 +15,5 @@ class ListOfFoods(var name:String,var id:String = UUID.randomUUID().toString().r
 
     override fun toString(): String {
         return "List of foods named $name, with ID: $id has foods: $listOfFoods."
-
     }
 }

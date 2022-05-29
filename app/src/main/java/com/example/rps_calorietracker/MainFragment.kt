@@ -5,16 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rps_calorietracker.databinding.FragmentMainBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 
@@ -51,7 +46,7 @@ class MainFragment : Fragment() {
                 {
                     val builder = android.app.AlertDialog.Builder(context)
                     builder.setTitle("Delete")
-                    builder.setMessage("Meal ${app.dataFoods.listOfFoods[position].toString()}")
+                    builder.setMessage("Meal ${app.dataFoods.listOfFoods[position]}")
                     builder.setIcon(android.R.drawable.ic_dialog_alert)
                     builder.setPositiveButton("Yes"){dialogInterface, which -> //performing positive action
                         app.DeleteFood(position)
@@ -140,7 +135,6 @@ class MainFragment : Fragment() {
 
         binding.rvMeal.layoutManager = LinearLayoutManager(activity)
         binding.rvActivity.visibility = View.GONE
-        //binding.rvActivityText.visibility = View.GONE
         binding.rvActivity.layoutManager = LinearLayoutManager(activity)
 
         super.onViewCreated(view, savedInstanceState)
@@ -175,16 +169,12 @@ class MainFragment : Fragment() {
         binding.swapRvFab.setOnClickListener {
             if (rvActivity) {
                 binding.rvMeal.visibility = View.GONE
-                //binding.rvFoodText.visibility = View.GONE
                 binding.rvActivity.visibility = View.VISIBLE
-                //binding.rvActivityText.visibility = View.VISIBLE
                 (activity as AppCompatActivity).supportActionBar?.title = "Activities:"
                 rvActivity = false
             } else if (!rvActivity) {
                 binding.rvActivity.visibility = View.GONE
-                //binding.rvActivityText.visibility = View.GONE
                 binding.rvMeal.visibility = View.VISIBLE
-                //binding.rvFoodText.visibility = View.VISIBLE
                 (activity as AppCompatActivity).supportActionBar?.title = "Foods:"
                 rvActivity = true
             }

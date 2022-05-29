@@ -16,8 +16,6 @@ class ActivityAdapter(private val data : ListOfActivities, private val onClickOb
         fun onClick(p0: View?, position:Int)
         fun onLongClick(p0:View?, position: Int)
     }
-
-
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val tvName: TextView = itemView.findViewById(R.id.tvName)
         val tvAmount: TextView = itemView.findViewById(R.id.tvAmount)

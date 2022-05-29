@@ -7,8 +7,10 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 
 class MyNotificationHelper(val context: Context) {
+    // Za grupiranje notifikacij, skupno ciscenje
     private val GROUP_KEY_TRACKER = "com.example.rps_calorietracker.TRACKER"
 
+    // Kreiranje kanala, nastavljanje imena in podrobnosti, za iskanje v nastavitvah naprave
     fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "CalorieTrackerChannel"

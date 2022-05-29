@@ -7,7 +7,6 @@ class ListOfActivities(var name:String,var id:String = UUID.randomUUID().toStrin
 
     override fun toString(): String {
         return "List of activities named $name, with ID: $id has Activites: $list."
-
     }
 }
 

@@ -12,11 +12,3 @@ class Activity(var name: String, var burnedCalories: Double, var id: String = UU
         return "Activity: $name has burned $burnedCalories  calories"
     }
 }
-/*
-fun main() {
-    val kolesarjenje=Activity("Kolesarjenje",200.50)
-    val nogomet = Activity ("Nogomet",321.15)
-
-    println("$kolesarjenje")
-    println("$nogomet")
-}*/

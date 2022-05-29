@@ -1,6 +1,5 @@
 package com.example.rps_calorietracker
 
-
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -52,7 +52,5 @@ class MealAdapter(private val data : ListOfFoods, private val onClickObject:MyOn
                 return true
             }
         })
-
     }
-
 }

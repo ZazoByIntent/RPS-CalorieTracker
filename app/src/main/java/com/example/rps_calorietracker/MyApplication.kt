@@ -92,7 +92,6 @@ class MyApplication : Application() {
 
     fun initFoodData() {
         dataFoods = try { //www
-            //Timber.d("My file data:${FileUtils.readFileToString(fileFood)}")
             gsonFood.fromJson(FileUtils.readFileToString(fileFood), ListOfFoods::class.java)
         } catch (e: IOException) {
             Timber.d("No file init data.")
@@ -134,8 +133,7 @@ class MyApplication : Application() {
         }
     }
     fun initActivityData() {
-        dataActivity= try { //www
-            //Timber.d("My file data:${FileUtils.readFileToString(fileFood)}")
+        dataActivity= try {
             gsonActivity.fromJson(FileUtils.readFileToString(fileActivity), ListOfActivities::class.java)
         } catch (e: IOException) {
             Timber.d("No file init data.")
@@ -171,5 +169,4 @@ class MyApplication : Application() {
             Timber.e(e.message)
         }
     }
-
 }
